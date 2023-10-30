@@ -1,0 +1,31 @@
+name: PlatformIO CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.platformio/.cache
+          key: ${{ runner.os }}-pio
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install PlatformIO Core
+        run: pip install --upgrade platformio
+
+      - name: Run wifiTest
+        run: pio test -e win_test_wifi -f "test_win_wifi"  
+        
+      - name: run pc_comm test
+        run: pio test -e win_test_pc_comm -f "test_win_pc_comm"  
+
+      - name: run Light test
+        run: pio test -e win_test_light -f "test_win_light"  
+
