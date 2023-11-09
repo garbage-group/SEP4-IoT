@@ -415,6 +415,34 @@ ISR(USART3_UDRE_vect)
     }
 }
 
+//own methods
+static char buffer[128];
+char* uart_receive() {
+  char *bufPtr = buffer;
+  char received;
+
+  // Clear buffer
+  for (int i = 0; i < 64; i++) {
+    buffer[i] = '\0';
+  }
+
+  do {
+    // Wait for data to be received
+    while (!(UCSR0A & (1 << RXC0)));
+
+    // Get and return received data from buffer
+    received = UDR0;
+    *bufPtr++ = received;
+
+    // Check for buffer overflow
+    if (bufPtr - buffer >= 63) {
+      break;
+    }
+  } while (received != '\n' && received != '\r');
+
+  return buffer;
+}
+
 #endif
 
 #endif//EXCLUDE_UART

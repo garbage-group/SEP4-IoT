@@ -80,3 +80,10 @@ void uart_send_string_blocking(USART_t usart, char *data);
  */
 UART_Callback_t uart_get_rx_callback(USART_t usart);
 
+//own added functions
+
+/**
+ * @brief wait to receive a string 
+ * @return 
+ */
+char* uart_receive() ;
