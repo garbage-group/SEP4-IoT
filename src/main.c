@@ -13,7 +13,7 @@ void receiveMessage(){
 
     if (result == DHT11_OK && strcmp(rarray, "getHumidity") == 0) {
         //sprintf(carray, "it's currently %d,%d degrees celcius\n",temperature_integer, temperature_decimal);
-        sprintf(carray, "%d.%d\n",humidity_integer,humidity_decimal);
+        sprintf(carray, "humid:%d.%d\n",humidity_integer,humidity_decimal);
         wifi_command_TCP_transmit(carray, 10);
         pc_comm_send_string_blocking(carray);
     } else {
