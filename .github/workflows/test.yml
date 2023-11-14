@@ -20,5 +20,5 @@ jobs:
       - name: Install PlatformIO Core
         run: pip install --upgrade platformio
 
-      - name: Run wifiTest
-        run: pio test
+      - name: Run all tests
+        run: pio test -vvv
