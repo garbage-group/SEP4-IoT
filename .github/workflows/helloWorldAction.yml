@@ -3,10 +3,10 @@ name: Hello Action
 on:
   push:
     branches:
-      - main
+      - "githubActionsTest"
   pull_request:
     branches:
-      - main
+      - "githubActionsTest"
 
 jobs:
   build:
