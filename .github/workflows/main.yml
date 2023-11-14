@@ -1,6 +1,12 @@
 name: PlatformIO CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
 
 jobs:
   build:
@@ -23,8 +29,8 @@ jobs:
       - name: Run wifiTest
         run: pio test -e win_test_wifi -f "test_win_wifi"
 
-      - name: run pc_comm test
+      - name: Run pc_comm test
         run: pio test -e win_test_pc_comm -f "test_win_pc_comm"
 
-      - name: run Light test
+      - name: Run Light test
         run: pio test -e win_test_light -f "test_win_light"
