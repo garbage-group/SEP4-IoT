@@ -21,4 +21,4 @@ jobs:
         run: pip install --upgrade platformio
 
       - name: Run all tests
-        run: pio test -vvv
+        run: pio test -vvv --upload-port=/dev/ttyACM0
