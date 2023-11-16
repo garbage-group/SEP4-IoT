@@ -13,8 +13,8 @@ void receiveMessage(){
 
     if (result == DHT11_OK && strcmp(rarray, "getHumidity") == 0) {
         //sprintf(carray, "it's currently %d,%d degrees celcius\n",temperature_integer, temperature_decimal);
-        sprintf(carray, "humid:%d.%d\n",humidity_integer,humidity_decimal);
-        wifi_command_TCP_transmit(carray, 10);
+        sprintf(carray, "humid:%d.%d:%s:%s:\n",humidity_integer,humidity_decimal,__DATE__,__TIME__);
+        wifi_command_TCP_transmit(carray, 50);
         pc_comm_send_string_blocking(carray);
     } else {
         sprintf(carray, "Failed to read data from DHT11 sensor\n");
@@ -37,7 +37,7 @@ int main(){
         pc_comm_send_string_blocking("failed to connect\n");
     }
 
-    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.182.11",23,receiveMessage,rarray); 
+    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.230.197",2910,receiveMessage,rarray); 
     if (tcpResult == WIFI_OK)
     {
         pc_comm_send_string_blocking("TCP connected\n");
