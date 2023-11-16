@@ -3,7 +3,7 @@ name: PlatformIO CI
 on:
   push:
     branches:
-      - "main"
+      - "githubActionsTest"
   pull_request:
     branches:
       - "main"
