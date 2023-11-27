@@ -3,6 +3,7 @@
 #include "dht11.h"
 #include <stdio.h>
 #include "wifi.h"
+#include "controller.h"
 
 char carray[128]; 
 char rarray[128];
@@ -12,11 +13,17 @@ void receiveMessage(){
     DHT11_ERROR_MESSAGE_t result = dht11_get(&humidity_integer, &humidity_decimal, &temperature_integer, &temperature_decimal);
 
     if (result == DHT11_OK && strcmp(rarray, "getHumidity") == 0) {
+        getHuimidty(humidity_integer, humidity_decimal, carray);
         //sprintf(carray, "it's currently %d,%d degrees celcius\n",temperature_integer, temperature_decimal);
-        sprintf(carray, "humid:%d.%d:%s:%s:\n",humidity_integer,humidity_decimal,__DATE__,__TIME__);
-        wifi_command_TCP_transmit(carray, 50);
-        pc_comm_send_string_blocking(carray);
-    } else {
+        //sprintf(carray, "humid:%d.%d:%s:%s:\n",humidity_integer,humidity_decimal);
+        //wifi_command_TCP_transmit(carray, 50);
+        //pc_comm_send_string_blocking(carray);
+    } 
+    if (result == DHT11_OK && strcmp(rarray, "getTemperature") == 0) {
+        getTemperature(temperature_integer, temperature_decimal, carray);
+    }
+    else 
+    {
         sprintf(carray, "Failed to read data from DHT11 sensor\n");
         wifi_command_TCP_transmit(carray, 40);
     }
