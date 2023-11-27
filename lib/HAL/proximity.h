@@ -2,6 +2,6 @@
 
 void calibrateDevice();
 
-void getCurrentLevel(uint16_t current_level, char* carray);
+void getCurrentLevel(uint16_t *current_level);
 
 void setThreshold();

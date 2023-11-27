@@ -1,14 +1,18 @@
 #include "pc_comm.h"
 #include <avr/delay.h>
 #include "dht11.h"
+#include "hc_sr04.h"
 #include <stdio.h>
 #include "wifi.h"
 #include "dht_controller.h"
+#include "proximity.h"
+
 #define SERIAL_NUMBER 1234
 
 char carray[128];
 char rarray[128];
 uint8_t humidity_integer, humidity_decimal, temperature_integer, temperature_decimal;
+uint16_t level_integer;
 
 void receiveMessage()
 {
@@ -26,6 +30,19 @@ void receiveMessage()
     {
         getTemperature(temperature_integer, temperature_decimal);
     }
+    if (strcmp(rarray, "calibrateDevice") == 0)
+    {
+        calibrateDevice();
+    }
+    if (strcmp(rarray, "setFillThreshold") == 0)
+    {
+        setThreshold(70); // the number should be sent by
+    }
+    if (strcmp(rarray, "getCurrentLevel") == 0)
+    {
+
+        getCurrentLevel(level_integer);
+    }
     else
     {
         throwDHTError();
@@ -37,6 +54,7 @@ int main()
     pc_comm_init(9600, NULL);
     pc_comm_send_string_blocking("start of program\n");
     dht11_init();
+    hc_sr04_init();
     wifi_init();
     _delay_ms(4000);
     WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("Securi-ty", "Sucction");
@@ -49,7 +67,7 @@ int main()
         pc_comm_send_string_blocking("failed to connect\n");
     }
 
-    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.128.11", 23, receiveMessage, rarray);
+    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.186.11", 23, receiveMessage, rarray);
     if (tcpResult == WIFI_OK)
     {
         pc_comm_send_string_blocking("TCP connected\n");
@@ -61,6 +79,7 @@ int main()
 
     while (1)
     {
+
         // pc_comm_send_string_blocking("Hello from the arduino\n");
         // sprintf(carray,"Hello from the arduino\n");
     }
