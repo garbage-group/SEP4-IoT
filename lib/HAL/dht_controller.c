@@ -20,7 +20,7 @@ void getTemperature(uint8_t temperature_integer, uint8_t temperature_decimal)
         pc_comm_send_string_blocking(carray);
 }
 
-void throwError()
+void throwDHTError()
 {
         char carray[128];
         sprintf(carray, "Failed to read data from DHT11 sensor\n");

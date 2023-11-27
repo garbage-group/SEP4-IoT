@@ -3,7 +3,8 @@
 #include "dht11.h"
 #include <stdio.h>
 #include "wifi.h"
-#include "controller.h"
+#include "dht_controller.h"
+#define SERIAL_NUMBER 1234
 
 char carray[128];
 char rarray[128];
@@ -13,17 +14,21 @@ void receiveMessage()
 {
     DHT11_ERROR_MESSAGE_t result = dht11_get(&humidity_integer, &humidity_decimal, &temperature_integer, &temperature_decimal);
 
+    if (strcmp(rarray, "getSerialNumber") == 0)
+    {
+        send_serial_TCP();
+    }
     if (result == DHT11_OK && strcmp(rarray, "getHumidity") == 0)
     {
         getHuimidty(humidity_integer, humidity_decimal);
-        }
+    }
     if (result == DHT11_OK && strcmp(rarray, "getTemperature") == 0)
     {
         getTemperature(temperature_integer, temperature_decimal);
     }
     else
     {
-        throwError();
+        throwDHTError();
     }
 }
 
