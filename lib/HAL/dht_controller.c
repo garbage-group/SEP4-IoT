@@ -24,5 +24,5 @@ void throwDHTError()
 {
         char carray[128];
         sprintf(carray, "Failed to read data from DHT11 sensor\n");
-        wifi_command_TCP_transmit(carray, 40);
+        wifi_command_TCP_transmit(carray, 38);
 }

@@ -49,7 +49,7 @@ int main()
         pc_comm_send_string_blocking("failed to connect\n");
     }
 
-    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.35.11", 23, receiveMessage, rarray);
+    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.128.11", 23, receiveMessage, rarray);
     if (tcpResult == WIFI_OK)
     {
         pc_comm_send_string_blocking("TCP connected\n");
