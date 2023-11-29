@@ -7,5 +7,3 @@ void getCurrentLevel();
 void setThreshold(double threshold);
 
 int sendViaTCP(char *buffer);
-
-void printdtb();
