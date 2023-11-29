@@ -1,4 +1,4 @@
-#include <buzzer.h>
+#include <activate_buzzer.h>
 #include <tone.h>
 
 void activateBuzzer()
