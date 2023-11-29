@@ -10,6 +10,7 @@
 #include "tone.h"
 #include "activate_buzzer.h"
 #include "string.h"
+#include "status.h"
 
 char rarray[128];
 uint8_t humidity_integer, humidity_decimal, temperature_integer, temperature_decimal;
@@ -18,6 +19,7 @@ uint16_t level_integer;
 void receiveMessage()
 {
     DHT11_ERROR_MESSAGE_t result = dht11_get(&humidity_integer, &humidity_decimal, &temperature_integer, &temperature_decimal);
+    level_integer = hc_sr04_takeMeasurement();
 
     if (strcmp(rarray, "getSerialNumber") == 0)
     {
@@ -47,11 +49,19 @@ void receiveMessage()
     {
         activateBuzzer();
     }
+    if (strcmp(rarray, "getStatus") == 0)
+    {
+        if(result == DHT11_OK && (int)level_integer > 49 && (int) level_integer < 3001){
+        sendOk();
+        } else {
+        sendNotOk();
+        }
+    }
 }
 
 int create_TCP_connection()
 {
-    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("172.20.10.3", 5663, receiveMessage, rarray);
+    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("172.20.10.14", 5663, receiveMessage, rarray);
     if (tcpResult == WIFI_OK)
     {
         pc_comm_send_string_blocking("TCP connected\n");
