@@ -27,7 +27,7 @@ void receiveMessage()
     }
     if (result == DHT11_OK && strcmp(rarray, "getHumidity") == 0)
     {
-        getHuimidty(humidity_integer, humidity_decimal);
+        getHumidity(humidity_integer, humidity_decimal);
     }
     if (result == DHT11_OK && strcmp(rarray, "getTemperature") == 0)
     {
@@ -61,7 +61,7 @@ void receiveMessage()
 
 int create_TCP_connection()
 {
-    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("172.20.10.14", 5663, receiveMessage, rarray);
+    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.4.89", 23, receiveMessage, rarray);
     if (tcpResult == WIFI_OK)
     {
         pc_comm_send_string_blocking("TCP connected\n");
@@ -82,7 +82,7 @@ int main()
     hc_sr04_init();
     wifi_init();
     _delay_ms(4000);
-    WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("bigdaddy", "22222223");
+    WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("Securi-ty", "Sucction");
     if (wifiresult == WIFI_OK)
     {
         pc_comm_send_string_blocking("connected\n");
