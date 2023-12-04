@@ -147,7 +147,7 @@ int main()
     int cnt = 1;
     while (1)
     {
-
+        /*
         if (cnt % 3 == 0)
         {
             wifi_command_close_TCP_connection();
@@ -162,8 +162,8 @@ int main()
             pc_comm_send_string_blocking(buffer);
         }
         _delay_ms(1000);
-        cnt++;
+        cnt++;*/
         // pc_comm_send_string_blocking("Hello from the arduino\n");
-        // sprintf(carray,"Hello from the arduino\n");
+        // sprintf(carray,"Hello from the ardu  ino\n");
     }
 }
