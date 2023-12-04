@@ -3,5 +3,5 @@
 
 void activateBuzzer()
 {
-    tone_play_starwars();
+    tone_play_starwars_tuned();
 }

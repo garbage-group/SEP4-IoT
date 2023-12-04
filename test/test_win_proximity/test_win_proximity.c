@@ -68,9 +68,13 @@ void processCharData(char *rawData, char *buffer, size_t bufferSize, DataType ty
         } else if (type == THRESHOLD) {
             snprintf(buffer, bufferSize, "setft:OK\n");
         }
-    } else {
-        // Handle invalid or different rawData
-        snprintf(buffer, bufferSize, "Invalid rawData\n");
+    } else{
+        if(type == CALIBRATE){
+            snprintf(buffer, bufferSize, "calib:FAILED\n");
+        }
+        if(type == THRESHOLD){
+            snprintf(buffer, bufferSize, "setft:FAILED\n");
+        }
     }
 
     wifi_command_TCP_transmit(buffer, strlen(buffer));
@@ -120,7 +124,7 @@ void test_processCalibrationOKData(void)
     TEST_ASSERT_EQUAL_STRING("calib:OK\n", last_pc_command);
 }
 
-void test_processThresholdData(void)
+void test_processThresholdOKData(void)
 {
     char buffer[128];
     char rData[] = "OK";
@@ -131,13 +135,37 @@ void test_processThresholdData(void)
     TEST_ASSERT_EQUAL_STRING("setft:OK\n", last_pc_command);
 }
 
+void test_processCalibrationFailedData(void)
+{
+    char buffer[128];
+    char rData[] = "FAILED";
+
+    processCharData(rData, buffer, sizeof(buffer), CALIBRATE);
+    TEST_ASSERT_EQUAL_STRING("calib:FAILED\n", buffer);
+    TEST_ASSERT_EQUAL_STRING("calib:FAILED\n", last_wifi_command);
+    TEST_ASSERT_EQUAL_STRING("calib:FAILED\n", last_pc_command);
+}
+
+void test_processThresholdFailedData(void)
+{
+    char buffer[128];
+    char rData[] = "FAILED";
+
+    processCharData(rData, buffer, sizeof(buffer), THRESHOLD);
+    TEST_ASSERT_EQUAL_STRING("setft:FAILED\n", buffer);
+    TEST_ASSERT_EQUAL_STRING("setft:FAILED\n", last_wifi_command);
+    TEST_ASSERT_EQUAL_STRING("setft:FAILED\n", last_pc_command);
+}
+
 int main()
 {
     UNITY_BEGIN();
 
     RUN_TEST(test_processProximityData);
     RUN_TEST(test_processCalibrationOKData);
-    RUN_TEST(test_processThresholdData);
+    RUN_TEST(test_processThresholdOKData);
+    RUN_TEST(test_processCalibrationFailedData);
+    RUN_TEST(test_processThresholdFailedData);
 
     return UNITY_END();
 }

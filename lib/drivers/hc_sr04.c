@@ -2,37 +2,35 @@
 
 #include <inttypes.h>
 
-//Vcc
+// Vcc
 #define DDR_Vcc DDRC
 #define PORT_Vcc PORTC
 #define P_Vcc PC0
 
-//GND
-#define DDR_Gnd DDRC //DDRK
-#define P_Gnd PC6 //PK7
+// GND
+#define DDR_Gnd DDRC // DDRK
+#define P_Gnd PC6    // PK7
 
-//Trigger
+// Trigger
 #define DDR_Trig DDRC
 #define P_Trig PC2
 #define PORT_trig PORTC
 
-//Echo
+// Echo
 #define PIN_Echo PINC
 #define P_Echo PC4
 
-
-
 void hc_sr04_init()
 {
-    //Vcc
-    DDR_Vcc|=(1 << P_Vcc);
-    PORT_Vcc|=(1 << P_Vcc);
+    // Vcc
+    DDR_Vcc |= (1 << P_Vcc);
+    PORT_Vcc |= (1 << P_Vcc);
 
-    //GND
-    DDR_Gnd|=(1 << P_Gnd);
+    // GND
+    DDR_Gnd |= (1 << P_Gnd);
 
-    //Trigger
-    DDR_Trig|=(1 << P_Trig);
+    // Trigger
+    DDR_Trig |= (1 << P_Trig);
 }
 
 uint16_t hc_sr04_takeMeasurement()
@@ -44,29 +42,26 @@ uint16_t hc_sr04_takeMeasurement()
     _delay_us(10);
     PORT_trig &= ~(1 << P_Trig);
 
-
-    
     uint8_t TCCR1B_state = TCCR1B; // The display is using timer1. But Ill just borrow it briefly. But therefor the state of TCCR1B needs to be saved.
 
     // Set the Timer/Counter1 prescaler to 256
-     TCCR1B = (1 << CS12);
-//    TCCR1B |= (1 << CS12);
-//    TCCR1B &= ~(1 << CS11);
-//    TCCR1B &= ~(1 << CS10);
-   
-TCNT1 = 0;
+    TCCR1B = (1 << CS12);
+    //    TCCR1B |= (1 << CS12);
+    //    TCCR1B &= ~(1 << CS11);
+    //    TCCR1B &= ~(1 << CS10);
+
+    TCNT1 = 0;
     while (!(PIN_Echo & (1 << P_Echo)))
     {
 
-                // Check for timer overflow (24 ms)
-        if (TCNT1 >= (F_CPU / 256) * 0.1) //timeout after 100ms. Chip is not working
+        // Check for timer overflow (24 ms)
+        if (TCNT1 >= (F_CPU / 256) * 0.1) // timeout after 100ms. Chip is not working
         {
             // Timer overflowed, return 0
             return 0;
         }
     }
-         // Wait for signal to begin /TODO implement some timeout...
-
+    // Wait for signal to begin /TODO implement some timeout...
 
     TCNT1 = 0; // Setting the timer to Zero. This is  messing up the display, but hopefully the reader of the display wont notice.
 
