@@ -4,7 +4,6 @@
 #include "hc_sr04.h"
 #include "wifi.h"
 #include "pc_comm.h"
-#include <avr/delay.h>
 
 void sendOk(){
     char carray[128];

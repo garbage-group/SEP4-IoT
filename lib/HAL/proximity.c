@@ -1,12 +1,10 @@
 #include "pc_comm.h"
-#include <avr/delay.h>
 #include "hc_sr04.h"
 #include <stdio.h>
 #include "wifi.h"
 #include "proximity.h"
 #include <string.h>
 #include <stdlib.h>
-#include <avr/interrupt.h>
 
 uint16_t dtb= 0;       // distance to bottom
 double fillth = 100.0; // fill threshold when bin is considered full
@@ -30,7 +28,7 @@ void calibrateDevice()
     uint16_t distance = hc_sr04_takeMeasurement();
     dtb = distance;
     // sei();
-    sprintf(carray, "%d\n", distance);
+    sprintf(carray, "calib:OK\n");
     sendViaTCP(carray);
     sprintf(carray, "Distance to bottom of bin is: %d mm\n", distance);
     pc_comm_send_string_blocking(carray);
@@ -62,7 +60,8 @@ void getCurrentLevel()
     sprintf(buf, "Relative trash level %s\n", carray);
     pc_comm_send_string_blocking(buf);
 
-    sendViaTCP(carray);
+    sprintf(buf, "level:%s\n", carray);
+    sendViaTCP(buf);
 }
 
 void setThreshold(double threshold)
@@ -75,5 +74,7 @@ void setThreshold(double threshold)
     dtostrf(threshold, 3, 3, carray);
     sprintf(buff, "Setting treshold to %s\n", carray);
     pc_comm_send_string_blocking(buff);
-    sendViaTCP("setft:OK\n");
+
+    sprintf(carray, "setft:OK");
+    sendViaTCP(carray);
 }
