@@ -11,57 +11,103 @@
 #include "activate_buzzer.h"
 #include "string.h"
 #include "status.h"
+#include <stdlib.h>
 
 char rarray[128];
-uint8_t humidity_integer, humidity_decimal, temperature_integer, temperature_decimal;
-uint16_t level_integer;
+uint8_t humidity_integer, humidity_decimal, temperature_integer, temperature_decimal, level_integer;
+
+double parse_double(const char *string)
+{
+    char carray[128];
+    char string_buffer[128];
+    int decimal, precision;
+    char *ptr;
+    int power;
+    double dividor = 1;
+    sprintf(string_buffer, "%s", string);
+    // 70.001
+
+    char *point_position = strchr(string_buffer, '.'); // saves the pointer in openParen to the char before the value "("
+
+    ptr = point_position + 1;
+    power = strlen(ptr);
+    sscanf(ptr, "%d", &precision);
+
+    *point_position = '\0';
+    sscanf(string_buffer, "%d", &decimal);
+
+    for (int i = 1; i <= power; i++)
+        dividor *= 10;
+
+    sprintf(carray, "DEBUG: %d.%d  (%d)\n", decimal, precision, power);
+    pc_comm_send_string_blocking(carray);
+    return (double)decimal + ((double)precision / dividor);
+};
 
 void receiveMessage()
 {
     DHT11_ERROR_MESSAGE_t result = dht11_get(&humidity_integer, &humidity_decimal, &temperature_integer, &temperature_decimal);
     level_integer = hc_sr04_takeMeasurement();
 
-    if (strcmp(rarray, "getSerialNumber") == 0)
+    pc_comm_send_string_blocking(rarray);
+    if (strncmp(rarray, "getSerialNumber", 15) == 0)
     {
         send_serial_TCP();
     }
-    if (result == DHT11_OK && strcmp(rarray, "getHumidity") == 0)
+    if (result == DHT11_OK && strncmp(rarray, "getHumidity", 11) == 0)
     {
         getHuimidty(humidity_integer, humidity_decimal);
     }
-    if (result == DHT11_OK && strcmp(rarray, "getTemperature") == 0)
+    if (result == DHT11_OK && strncmp(rarray, "getTemperature", 14) == 0)
     {
         getTemperature(temperature_integer, temperature_decimal);
     }
-    if (strcmp(rarray, "calibrateDevice") == 0)
+    if (strncmp(rarray, "calibrateDevice", 15) == 0)
     {
         calibrateDevice();
     }
-    if (strcmp(rarray, "setFillThreshold") == 0)
+    if (strncmp(rarray, "setFill", 7) == 0)
+
     {
-        setThreshold(70.0); // the number should be sent by
+        char carray[200];
+        const char *openParen = strchr(rarray, '('); // saves the pointer in openParen to the char before the value "("
+        char *closedParen = strchr(rarray, ')');
+        if (closedParen != NULL)
+            *closedParen = '\0';
+
+        if (openParen != NULL)
+        {
+            double value;
+            value = parse_double(openParen + 1);
+
+            setThreshold(value); // The number is sent by cloud this way
+        }
     }
-    if (strcmp(rarray, "getCurrentLevel") == 0)
+
+    if (strncmp(rarray, "getCurrentLevel", 15) == 0)
     {
         getCurrentLevel(level_integer);
     }
-    if (strcmp(rarray, "activateBuzzer") == 0)
+    if (strncmp(rarray, "activateBuzzer", 14) == 0)
     {
         activateBuzzer();
     }
-    if (strcmp(rarray, "getStatus") == 0)
+    if (strncmp(rarray, "getStatus", 9) == 0)
     {
-        if(result == DHT11_OK && (int)level_integer > 49 && (int) level_integer < 3001){
-        sendOk();
-        } else {
-        sendNotOk();
+        if (result == DHT11_OK && (int)level_integer > 49 && (int)level_integer < 3001)
+        {
+            sendOk();
+        }
+        else
+        {
+            sendNotOk();
         }
     }
 }
 
 int create_TCP_connection()
 {
-    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("172.20.10.14", 5663, receiveMessage, rarray);
+    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.1.119", 5663, receiveMessage, rarray);
     if (tcpResult == WIFI_OK)
     {
         pc_comm_send_string_blocking("TCP connected\n");
@@ -82,7 +128,9 @@ int main()
     hc_sr04_init();
     wifi_init();
     _delay_ms(4000);
-    WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("bigdaddy", "22222223");
+    // WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("FTTH_MP8523", "syemRekWeed4");
+    WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("asus_papp", "macika74");
+
     if (wifiresult == WIFI_OK)
     {
         pc_comm_send_string_blocking("connected\n");
@@ -93,12 +141,29 @@ int main()
     }
     create_TCP_connection();
 
+    pc_comm_send_string_blocking("Hello from the arduino\n");
+
+    char buffer[500];
+    int cnt = 1;
     while (1)
     {
-        //_delay_ms(5000);
-        // wifi_command_close_TCP_connection();
-        // create_TCP_connection();
+        /*
+        if (cnt % 3 == 0)
+        {
+            wifi_command_close_TCP_connection();
+            create_TCP_connection();
+        }
+
+        if (cnt % 5 == 0)
+        {
+            uint16_t distance = hc_sr04_takeMeasurement();
+
+            sprintf(buffer, "Current distance %d mm (Calibr: %d)\n", distance, get_calibrated_value());
+            pc_comm_send_string_blocking(buffer);
+        }
+        _delay_ms(1000);
+        cnt++;*/
         // pc_comm_send_string_blocking("Hello from the arduino\n");
-        // sprintf(carray,"Hello from the arduino\n");
+        // sprintf(carray,"Hello from the ardu  ino\n");
     }
 }

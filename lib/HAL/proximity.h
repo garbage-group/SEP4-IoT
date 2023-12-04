@@ -2,10 +2,10 @@
 
 void calibrateDevice();
 
+uint16_t get_calibrated_value();
+
 void getCurrentLevel();
 
 void setThreshold(double threshold);
 
 int sendViaTCP(char *buffer);
-
-void printdtb();
