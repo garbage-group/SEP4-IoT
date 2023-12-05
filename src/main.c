@@ -64,7 +64,17 @@ void receiveMessage()
     }
     if (strncmp(rarray, "calibrateDevice", 15) == 0)
     {
-        calibrateDevice();
+        if ((int)level_integer > 49 && (int)level_integer < 3001)
+        {
+            calibrateDevice();
+        }
+        else
+        {
+            char carray[128];
+            sprintf(carray, "calib:FAILED");
+            wifi_command_TCP_transmit((uint8_t *)carray, strlen(carray));
+            pc_comm_send_string_blocking(carray);
+        }
     }
     if (strncmp(rarray, "setFillThreshold", 7) == 0)
 
@@ -80,7 +90,16 @@ void receiveMessage()
             double value;
             value = parse_double(openParen + 1);
 
-            setThreshold(value); // The number is sent by cloud this way
+            if (value > 0.0 && value < 100.1)
+            {
+                setThreshold(value); // The number is sent by cloud this way and is within 0.0-100.0
+            }
+            else
+            {
+                char carray[250];
+                sprintf(carray, "setft:FAILED");
+                sendViaTCP(carray);
+            }
         }
     }
 
