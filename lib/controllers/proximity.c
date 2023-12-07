@@ -12,11 +12,6 @@ uint16_t aht = 0;      // the absolute height of the trash
 double relative = 0;
 double currentLevel = 0;
 
-int sendViaTCP(char *buffer)
-{
-    return wifi_command_TCP_transmit((uint8_t *)buffer, strlen(buffer));
-}
-
 uint16_t get_calibrated_value() { return dtb; }
 
 void calibrateDevice()
