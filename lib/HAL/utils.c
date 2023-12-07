@@ -80,7 +80,7 @@ void receiveMessage()
     if (strncmp(rarray, "setFillThreshold", 7) == 0)
 
     {
-        char carray[200];
+        // char carray[200];
         const char *openParen = strchr(rarray, '('); // saves the pointer in openParen to the char before the value "("
         char *closedParen = strchr(rarray, ')');
         if (closedParen != NULL)
@@ -127,7 +127,7 @@ void receiveMessage()
 
 int create_TCP_connection()
 {
-    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.91.89", 23, receiveMessage, rarray);
+    WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.1.101", 5663, receiveMessage, rarray);
     if (tcpResult == WIFI_OK)
     {
         pc_comm_send_string_blocking("TCP connected\n");
@@ -140,7 +140,7 @@ int create_TCP_connection()
 }
 int connect_to_wifi()
 {
-    WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("Securi-ty", "Sucction");
+    WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("asus_papp", "macika74");
     if (wifiresult == WIFI_OK)
     {
         pc_comm_send_string_blocking("connected\n");
@@ -149,6 +149,7 @@ int connect_to_wifi()
     {
         pc_comm_send_string_blocking("failed to connect\n");
     }
+    return wifiresult;
 }
 
 int sendViaTCP(char *buffer)
