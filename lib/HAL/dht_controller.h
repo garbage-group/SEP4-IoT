@@ -4,7 +4,8 @@ typedef enum
 {
     ERROR_READ_SENSOR,
     ERROR_INVALID_DATA,
-    ERROR_BUFFER_OVERFLOW
+    ERROR_BUFFER_OVERFLOW,
+    ERROR_INVALID_DATA_TYPE
 } DHTErrorType;
 
 void getHumidity(uint8_t humidity_integer, uint8_t humidity_decimal);

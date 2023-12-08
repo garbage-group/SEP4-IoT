@@ -37,6 +37,9 @@ void throwDHTError(DHTErrorType errorType)
         case ERROR_BUFFER_OVERFLOW:
                 errorMessage = "Buffer overflow encountered\n";
                 break;
+        case ERROR_INVALID_DATA_TYPE:
+                errorMessage = "Invalid data type\n";
+                break;
         default:
                 errorMessage = "Unknown error\n";
         }
