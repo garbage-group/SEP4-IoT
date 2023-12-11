@@ -6,18 +6,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-uint16_t dtb= 0;       // distance to bottom
+uint16_t dtb = 0;      // distance to bottom
 double fillth = 100.0; // fill threshold when bin is considered full
 uint16_t aht = 0;      // the absolute height of the trash
 double relative = 0;
 double currentLevel = 0;
 
-int sendViaTCP(char *buffer)
-{
-    return wifi_command_TCP_transmit((uint8_t *)buffer, strlen(buffer));
-}
-
-uint16_t get_calibrated_value() { return dtb;}
+uint16_t get_calibrated_value() { return dtb; }
 
 void calibrateDevice()
 {
@@ -28,7 +23,7 @@ void calibrateDevice()
     uint16_t distance = hc_sr04_takeMeasurement();
     dtb = distance;
     // sei();
-    sprintf(carray, "calib:OK\n");
+    sprintf(carray, "OK\n");
     sendViaTCP(carray);
     sprintf(carray, "Distance to bottom of bin is: %d mm\n", distance);
     pc_comm_send_string_blocking(carray);
@@ -50,7 +45,7 @@ void getCurrentLevel()
     sprintf(carray, "Measurement %d mm calibrated: %d mm trash amount= %d mm\n", level, dtb, aht);
     pc_comm_send_string_blocking(carray);
 
-    currentLevel = ((double)aht / (double)dtb) * 100; // relative to full bin
+    currentLevel = ((double)aht / (double)dtb) * 100.0; // relative to full bin
     dtostrf(currentLevel, 3, 1, carray);
     sprintf(buf, "Absolute trash level %s\n", carray);
     pc_comm_send_string_blocking(buf);
