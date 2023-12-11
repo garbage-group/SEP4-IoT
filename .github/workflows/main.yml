@@ -34,3 +34,15 @@ jobs:
 
       - name: Run Light test
         run: pio test -e win_test_light -f "test_win_light"
+
+      - name: Run dht11 controller test
+        run: pio test -e win_test_light -f "test_win_dht11_controller"
+
+      - name: Run proximity test
+        run: pio test -e win_test_light -f "test_win_proximity"
+
+      - name: Run serial number test
+        run: pio test -e win_test_light -f "test_win_serial"
+
+      - name: Run status test
+        run: pio test -e win_test_light -f "test_win_status"

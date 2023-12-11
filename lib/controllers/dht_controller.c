@@ -4,6 +4,7 @@
 #include "wifi.h"
 #include <string.h>
 #include "dht_controller.h"
+#include "utils.h"
 
 void getHumidity(uint8_t humidity_integer, uint8_t humidity_decimal)
 {

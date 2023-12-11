@@ -1,5 +1,4 @@
 #include "pc_comm.h"
-#include <avr/delay.h>
 #include "dht11.h"
 #include "hc_sr04.h"
 #include <stdio.h>
