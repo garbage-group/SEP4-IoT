@@ -7,6 +7,6 @@ void activateBuzzer()
 {
     tone_play_starwars_tuned();
     char carray[250];
-    sprintf(carray, "actbu:OK");
+    sprintf(carray, "OK");
     sendViaTCP(carray);
 }

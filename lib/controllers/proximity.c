@@ -45,7 +45,7 @@ void getCurrentLevel()
     sprintf(carray, "Measurement %d mm calibrated: %d mm trash amount= %d mm\n", level, dtb, aht);
     pc_comm_send_string_blocking(carray);
 
-    currentLevel = ((double)aht / (double)dtb) * 100; // relative to full bin
+    currentLevel = ((double)aht / (double)dtb) * 100.0; // relative to full bin
     dtostrf(currentLevel, 3, 1, carray);
     sprintf(buf, "Absolute trash level %s\n", carray);
     pc_comm_send_string_blocking(buf);
