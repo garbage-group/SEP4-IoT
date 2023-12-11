@@ -113,6 +113,26 @@ void test_processProximityData(void)
     TEST_ASSERT_EQUAL_STRING("level:45.0\n", last_pc_command);
 }
 
+void test_processProximityBoundaryData(void) {
+    char buffer[128];
+    uint16_t rawData = 0xFFFF; // maximum value, representing 255.255
+
+    processData(rawData, buffer, sizeof(buffer), PROXIMITY);
+    TEST_ASSERT_EQUAL_STRING("level:255.255\n", buffer);
+    TEST_ASSERT_EQUAL_STRING("level:255.255\n", last_wifi_command);
+    TEST_ASSERT_EQUAL_STRING("level:255.255\n", last_pc_command);
+}
+
+void test_processCalibrationEmptyData(void) {
+    char buffer[128];
+    char rData[] = "";
+
+    processCharData(rData, buffer, sizeof(buffer), CALIBRATE);
+    TEST_ASSERT_EQUAL_STRING("calib:FAILED\n", buffer);
+    TEST_ASSERT_EQUAL_STRING("calib:FAILED\n", last_wifi_command);
+    TEST_ASSERT_EQUAL_STRING("calib:FAILED\n", last_pc_command);
+}
+
 void test_processCalibrationOKData(void)
 {
     char buffer[128];
@@ -162,10 +182,12 @@ int main()
     UNITY_BEGIN();
 
     RUN_TEST(test_processProximityData);
-    RUN_TEST(test_processCalibrationOKData);
+    RUN_TEST(test_processProximityBoundaryData);
     RUN_TEST(test_processThresholdOKData);
-    RUN_TEST(test_processCalibrationFailedData);
     RUN_TEST(test_processThresholdFailedData);
+    RUN_TEST(test_processCalibrationOKData);
+    RUN_TEST(test_processCalibrationFailedData);
+    RUN_TEST(test_processCalibrationEmptyData);
 
     return UNITY_END();
 }
