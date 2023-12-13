@@ -1,3 +1,9 @@
+/**
+ * @file  serial.c
+ * @brief Controller for sending the serial number of the ATmega2560
+ *
+ * This file provides the implementation of sneding the serial number for the device
+ */
 #include <string.h>
 #include <wifi.h>
 #include <stdio.h>
