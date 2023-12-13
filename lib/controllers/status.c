@@ -11,7 +11,10 @@
 #include "wifi.h"
 #include "pc_comm.h"
 #include "utils.h"
-
+/**
+ * @brief Sends an OK Message to the Cloud via TCP connection
+ * 
+ */
 void sendOk()
 {
     char carray[128];
@@ -20,6 +23,10 @@ void sendOk()
     pc_comm_send_string_blocking(carray);
 }
 
+/**
+ * @brief Send an NOT OK Message to the Cloud via TCP connection
+ * 
+ */
 void sendNotOk()
 {
     char carray[128];
