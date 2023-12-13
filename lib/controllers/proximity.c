@@ -14,6 +14,11 @@ double currentLevel = 0;
 
 uint16_t get_calibrated_value() { return dtb; }
 
+/**
+ * @brief takes an hc_sr04_takeMeasurement and saves the measurement in dtb "distance to bottom"
+ *
+ */
+
 void calibrateDevice()
 {
     char carray[128];
@@ -29,6 +34,10 @@ void calibrateDevice()
     pc_comm_send_string_blocking(carray);
 }
 
+/**
+ * @brief Get the current level in %, relative to the calibrated value.
+ *
+ */
 void getCurrentLevel()
 { // Calculating fill level of bin
     char carray[128];
@@ -58,6 +67,12 @@ void getCurrentLevel()
     sprintf(buf, "level:%s\n", carray);
     sendViaTCP(buf);
 }
+/**
+ * @brief Set the Threshold field,
+ * NOTE: this is no longer needed, as of 13/12/2023 sicne the interfacing contract has been modified, and Cloud is handling the threshold.
+ *
+ * @param threshold
+ */
 
 void setThreshold(double threshold)
 {
