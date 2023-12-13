@@ -1,3 +1,9 @@
+/**
+ * @file  unity.c
+ * @brief Utility module for functions which are used by controller module and the main file
+ *
+ *Utility module for functions which are used by controller module and the main file
+ */
 #include "pc_comm.h"
 #include "dht11.h"
 #include "hc_sr04.h"

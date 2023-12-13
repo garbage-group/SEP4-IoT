@@ -1,3 +1,9 @@
+/**
+ * @file  status.c
+ * @brief Controller for getting the status of the ATmega2560
+ *
+ * This file provides the implementation of sending the status of the Arduino
+ */
 #include "status.h"
 #include "dht11.h"
 #include <string.h>
