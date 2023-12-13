@@ -48,9 +48,14 @@ void pc_comm_send_string_blocking(const char *command)
 void processData(uint16_t rawData, char *buffer, size_t bufferSize, DataType type)
 {
 
-    if (rawData > 0x7FFF)
+    if (rawData > 0x7FFF || rawData < 0)
     { // 0x7FFF is the maximum valid value
         throwDHTError(ERROR_INVALID_DATA);
+        return;
+    }
+    if (type != TEMPERATURE && type != HUMIDITY)
+    {
+        throwDHTError(ERROR_INVALID_DATA_TYPE);
         return;
     }
     // Check for buffer overflow potential
@@ -127,6 +132,18 @@ void test_processTemperatureData(void)
     TEST_ASSERT_EQUAL_STRING("tempe:22.9\n", last_pc_command);
 }
 
+//-----------------UNIT_TEST_FOR_NEGATIVE_RAW_DATA------------------//
+
+void test_processDataWithNegativeRawData(void)
+{
+    char buffer[128];
+    uint16_t rawData = (uint16_t)-2; // Casting negative value to unsigned
+
+    processData(rawData, buffer, sizeof(buffer), TEMPERATURE);
+
+    TEST_ASSERT_EQUAL_STRING("Invalid data format from DHT11 sensor\n", last_wifi_output);
+}
+
 //-----------------UNIT_TEST_TO_VERIFY_BEHAVIOUR_OUTSIDE_EXPECTED_FORMAT------------------//
 
 void test_processDataWithInvalidRawData(void)
@@ -152,14 +169,141 @@ void test_processDataWithSmallBufferSize(void)
     TEST_ASSERT_EQUAL_STRING("Buffer overflow encountered\n", last_wifi_output);
 }
 
+//-----------------UNIT_TEST_FOR_MAX_VALID_RAW_DATA------------------//
+
+void test_processDataWithMaxValidRawData(void)
+{
+    char buffer[128];
+    uint16_t rawData = 0x7FFF; // Maximum valid value
+
+    processData(rawData, buffer, sizeof(buffer), TEMPERATURE);
+
+    // Expect a valid string output that matches the expected format
+    // Example assertion, adjust as per your actual expected output
+    TEST_ASSERT_EQUAL_STRING("tempe:127.255\n", buffer);
+}
+
+//-----------------UNIT_TEST_FOR_ZERO_RAW_DATA------------------//
+
+void test_processDataZeroRawData(void)
+{
+    char buffer[128];
+    uint16_t rawData = 0; // Maximum valid value
+
+    processData(rawData, buffer, sizeof(buffer), TEMPERATURE);
+
+    // Expect a valid string output that matches the expected format
+    // Example assertion, adjust as per your actual expected output
+    TEST_ASSERT_EQUAL_STRING("tempe:0.0\n", buffer);
+}
+
+//-----------------UNIT_TEST_FOR_INVALID_DATA------------------//
+void test_processDataWithInvalidDataType(void)
+{
+    char buffer[128];
+    uint16_t rawData = 0x1234; // Some test data
+
+    // Using an invalid data type
+    processData(rawData, buffer, sizeof(buffer), 99);
+
+    TEST_ASSERT_EQUAL_STRING("Invalid data type\n", last_wifi_output); // FAILS
+}
+
+//-----------------UNIT_TEST_WITH_EXACT_BUFFER_SIZE------------------//
+
+void test_processDataWithExactBufferSize(void)
+{
+    char buffer[14];           // Exact buffer size needed for "tempe:20.20\n"
+    uint16_t rawData = 0x1414; // 20.20 in hex
+
+    processData(rawData, buffer, sizeof(buffer), TEMPERATURE);
+
+    TEST_ASSERT_EQUAL_STRING("tempe:20.20\n", buffer);
+}
+
+//-----------------UNIT_TEST_WITH_LARGE_BUFFER_SIZE------------------//
+
+void test_processDataWithLargeBufferSize(void)
+{
+    char buffer[1024];         // Significantly larger buffer size
+    uint16_t rawData = 0x1414; // Test data
+
+    processData(rawData, buffer, sizeof(buffer), HUMIDITY);
+
+    TEST_ASSERT_EQUAL_STRING("humid:20.20\n", buffer);
+}
+
+//-----------------UNIT_TEST_WITH_NOT_INITIALIZED_BUFFER------------------//
+
+void test_processDataWithNonInitializedBuffer(void)
+{
+    char buffer[128];
+    memset(buffer, 'X', sizeof(buffer)); // Fill buffer with 'X'
+    uint16_t rawData = 0x1414;           // Test data
+
+    processData(rawData, buffer, sizeof(buffer), TEMPERATURE);
+
+    TEST_ASSERT_EQUAL_STRING("tempe:20.20\n", buffer);
+}
+
+//-----------------UNIT_TEST_WITH_ONE_INTEGER_PART------------------//
+
+void test_processDataWithOnlyIntegerPart(void)
+{
+    char buffer[128];
+    uint16_t rawData = 0x1400; // 20.0 in hex
+
+    processData(rawData, buffer, sizeof(buffer), TEMPERATURE);
+
+    TEST_ASSERT_EQUAL_STRING("tempe:20.0\n", buffer);
+}
+
+//-----------------UNIT_TEST_WITH_ONE_DECIMAL_PART------------------//
+
+void test_processDataWithOnlyDecimalPart(void)
+{
+    char buffer[128];
+    uint16_t rawData = 0x0014; // 0.20 in hex
+
+    processData(rawData, buffer, sizeof(buffer), HUMIDITY);
+
+    TEST_ASSERT_EQUAL_STRING("humid:0.20\n", buffer);
+}
+
+//-----------------UNIT_TEST_WITH_CONSECUTIVE_CALLS------------------//
+
+void test_processDataCalledConsecutivelyWithDifferentTypes(void)
+{
+    char buffer[128];
+    uint16_t rawDataTemperature = 0x1414; // Test data for temperature
+    uint16_t rawDataHumidity = 0x2828;    // Test data for humidity
+
+    processData(rawDataTemperature, buffer, sizeof(buffer), TEMPERATURE);
+    TEST_ASSERT_EQUAL_STRING("tempe:20.20\n", buffer);
+
+    processData(rawDataHumidity, buffer, sizeof(buffer), HUMIDITY);
+    TEST_ASSERT_EQUAL_STRING("humid:40.40\n", buffer);
+}
+
 int main()
 {
     UNITY_BEGIN();
 
     RUN_TEST(test_processHumidityData);
     RUN_TEST(test_processTemperatureData);
+    RUN_TEST(test_processDataWithNegativeRawData);
     RUN_TEST(test_processDataWithInvalidRawData);
     RUN_TEST(test_processDataWithSmallBufferSize);
+
+    RUN_TEST(test_processDataWithMaxValidRawData);
+    RUN_TEST(test_processDataZeroRawData);
+    RUN_TEST(test_processDataWithInvalidDataType);
+    RUN_TEST(test_processDataWithExactBufferSize);
+    RUN_TEST(test_processDataWithLargeBufferSize);
+    RUN_TEST(test_processDataWithNonInitializedBuffer);
+    RUN_TEST(test_processDataWithOnlyIntegerPart);
+    RUN_TEST(test_processDataWithOnlyDecimalPart);
+    RUN_TEST(test_processDataCalledConsecutivelyWithDifferentTypes);
 
     return UNITY_END();
 }

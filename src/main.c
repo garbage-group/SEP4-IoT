@@ -14,6 +14,11 @@
 #include <stdlib.h>
 #include "utils.h"
 
+/**
+ * @brief Main entry point method which contein the initiation of the used headers
+ *
+ * @return int
+ */
 int main()
 {
     pc_comm_init(9600, NULL);

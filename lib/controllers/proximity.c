@@ -5,6 +5,7 @@
 #include "proximity.h"
 #include <string.h>
 #include <stdlib.h>
+#include "utils.h"
 
 uint16_t dtb = 0;      // distance to bottom
 double fillth = 100.0; // fill threshold when bin is considered full

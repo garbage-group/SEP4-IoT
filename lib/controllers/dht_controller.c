@@ -4,6 +4,7 @@
 #include "wifi.h"
 #include <string.h>
 #include "dht_controller.h"
+#include "utils.h"
 
 void getHumidity(uint8_t humidity_integer, uint8_t humidity_decimal)
 {
@@ -36,6 +37,9 @@ void throwDHTError(DHTErrorType errorType)
                 break;
         case ERROR_BUFFER_OVERFLOW:
                 errorMessage = "Buffer overflow encountered\n";
+                break;
+        case ERROR_INVALID_DATA_TYPE:
+                errorMessage = "Invalid data type\n";
                 break;
         default:
                 errorMessage = "Unknown error\n";
