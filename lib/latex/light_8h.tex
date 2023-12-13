@@ -1,0 +1,65 @@
+\doxysection{lib/\+HAL/light.h File Reference}
+\hypertarget{light_8h}{}\label{light_8h}\index{lib/HAL/light.h@{lib/HAL/light.h}}
+
+
+Photoresistor driver for ATmega2560.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{light_8h_a80cc83ec8a059be1aae33af8b694806c}{light\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize ADC for photoresistor. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{light_8h_a23732ad059fcfc93cbbdfc02b2b7881c}{light\+\_\+read}} (void)
+\begin{DoxyCompactList}\small\item\em Read value from photoresistor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Photoresistor driver for ATmega2560. 
+
+This file provides the API for initializing and reading the value from a photoresistor connected to pin PK1 (ADC9) on the ATmega2560.
+
+\begin{DoxyAuthor}{Author}
+Your Name 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+September 2023 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{light_8h_a80cc83ec8a059be1aae33af8b694806c}\label{light_8h_a80cc83ec8a059be1aae33af8b694806c} 
+\index{light.h@{light.h}!light\_init@{light\_init}}
+\index{light\_init@{light\_init}!light.h@{light.h}}
+\doxysubsubsection{\texorpdfstring{light\_init()}{light\_init()}}
+{\footnotesize\ttfamily void light\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize ADC for photoresistor. 
+
+This function initializes the ADC to read values from the photoresistor connected to pin PK1 (ADC9).
+
+This function initializes the ADC to read values from the photoresistor connected to pin PK1 (ADC9). \Hypertarget{light_8h_a23732ad059fcfc93cbbdfc02b2b7881c}\label{light_8h_a23732ad059fcfc93cbbdfc02b2b7881c} 
+\index{light.h@{light.h}!light\_read@{light\_read}}
+\index{light\_read@{light\_read}!light.h@{light.h}}
+\doxysubsubsection{\texorpdfstring{light\_read()}{light\_read()}}
+{\footnotesize\ttfamily uint16\+\_\+t light\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Read value from photoresistor. 
+
+This function reads the ADC value from the photoresistor connected to pin PK1 (ADC9).
+
+\begin{DoxyReturn}{Returns}
+10-\/bit ADC value read from the photoresistor
+\end{DoxyReturn}
+
+
+This function reads the ADC value from the photoresistor connected to pin PK1 (ADC9).
+
+\begin{DoxyReturn}{Returns}
+10-\/bit ADC value read from the photoresistor 
+\end{DoxyReturn}

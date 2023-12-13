@@ -1,0 +1,42 @@
+\doxysection{wifi.\+h}
+\hypertarget{wifi_8h_source}{}\label{wifi_8h_source}\index{lib/HAL/wifi.h@{lib/HAL/wifi.h}}
+\mbox{\hyperlink{wifi_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{uart_8h}{uart.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ USART\_WIFI\ USART\_3}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\{}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a364a74453ddf1c389da12410274ebf90}{WIFI\_OK}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a9cce1701e9dc7b7336c87217add87631}{WIFI\_FAIL}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a8d64882921bc7181ac3d1c744536b2b5}{WIFI\_ERROR\_RECEIVED\_ERROR}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39aa0b5c306a5e53119121dcb2236587793}{WIFI\_ERROR\_NOT\_RECEIVING}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a6ffddf6d55ec16c61d74946cfca8ec59}{WIFI\_ERROR\_RECEIVING\_GARBAGE}}\ \ \ \ \ }
+\DoxyCodeLine{00031\ \}\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{wifi_8h_a5a10faf9b8f11dba0443aca612962ca1}{WIFI\_TCP\_Callback\_t}})();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{wifi_8h_af67410a15ecc24ecef0e5abce0c5b30c}{wifi\_init}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00050\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a005bd00ff0a7d73f6aaabe64aa7ac0a6}{wifi\_command\_AT}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00059\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a5db5e2a9c95e7f72d0d89ec0801ace91}{wifi\_command\_join\_AP}}(\textcolor{keywordtype}{char}\ *ssid,\ \textcolor{keywordtype}{char}\ *password);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a4ff81822a28ad72d54fce88cfc66e9f6}{wifi\_command\_disable\_echo}}();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00073\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a4aed042446124a2fc7912ab3dc757ae8}{wifi\_command\_set\_mode\_to\_1}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a552ba271227a9a07e9c2ae0c2b31f9dc}{wifi\_command\_set\_to\_single\_Connection}}();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00091\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a52eba99c0b57b3b291392f19eb2d6825}{wifi\_command\_create\_TCP\_connection}}(\textcolor{keywordtype}{char}\ *IP,\ uint16\_t\ port,\ \mbox{\hyperlink{wifi_8h_a5a10faf9b8f11dba0443aca612962ca1}{WIFI\_TCP\_Callback\_t}}\ callback\_when\_message\_received,\ \textcolor{keywordtype}{char}\ *received\_message\_buffer);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00100\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a0e1594b540e876ad528a307597dca491}{wifi\_command\_TCP\_transmit}}(uint8\_t\ *data,\ uint16\_t\ length);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00107\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a67b4baf29b95787ac461ca6e81b69cc3}{wifi\_command\_quit\_AP}}();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00113\ \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\_ERROR\_MESSAGE\_t}}\ \mbox{\hyperlink{wifi_8h_a249ae8b3ed12c30b04139e7a1034d954}{wifi\_command\_close\_TCP\_connection}}();}
+
+\end{DoxyCode}

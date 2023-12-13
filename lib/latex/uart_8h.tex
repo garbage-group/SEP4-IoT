@@ -1,0 +1,230 @@
+\doxysection{lib/\+HAL/uart.h File Reference}
+\hypertarget{uart_8h}{}\label{uart_8h}\index{lib/HAL/uart.h@{lib/HAL/uart.h}}
+
+
+UART communication interface header.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart_8h_a39cf6729acbf3013735f9be13213d66b}{UART\+\_\+\+Callback\+\_\+t}}) (uint8\+\_\+t)
+\begin{DoxyCompactList}\small\item\em Type definition for UART received data callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}} \{ \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa4ee9bfd4dd9ae53d762cc046ce72c892}{USART\+\_\+0}}
+, \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daad268e22914c93f6f39e46cc38ae21b2d}{USART\+\_\+1}}
+, \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa474c11c7630596744eb30ecfc8731838}{USART\+\_\+2}}
+, \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa5642c3f3fba0c2854cd263b6d143285c}{USART\+\_\+3}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for available USART modules. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{uart_8h_a31388240bfd12f1e0d832a03ebb83231}{uart\+\_\+init}} (\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}} usart, uint32\+\_\+t baudrate, \mbox{\hyperlink{uart_8h_a39cf6729acbf3013735f9be13213d66b}{UART\+\_\+\+Callback\+\_\+t}} callback)
+\begin{DoxyCompactList}\small\item\em Initialize the specified USART module. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8h_aa51ae8028dd09baada6dbcc1a60ffdcb}{uart\+\_\+send\+\_\+blocking}} (\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}} usart, uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Send a single byte over UART using blocking method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8h_a59e7b7bf803862ce2734be3d136ae4e2}{uart\+\_\+send\+\_\+array\+\_\+non\+Blocking}} (\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}} usart, uint8\+\_\+t \texorpdfstring{$\ast$}{*}str, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Send an array of data over UART without blocking. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8h_ae5ed200be03073f5d5f5d1f46db5ea49}{uart\+\_\+send\+\_\+array\+\_\+blocking}} (\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}} usart, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Send an array of data over UART using blocking method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{uart_8h_a68c744debe5f6e836ea1977d1ed07427}{uart\+\_\+send\+\_\+string\+\_\+blocking}} (\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}} usart, char \texorpdfstring{$\ast$}{*}data)
+\begin{DoxyCompactList}\small\item\em Send a string over UART using blocking method. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{uart_8h_a39cf6729acbf3013735f9be13213d66b}{UART\+\_\+\+Callback\+\_\+t}} \mbox{\hyperlink{uart_8h_a5b01abb572c8484419c74a4958e546d1}{uart\+\_\+get\+\_\+rx\+\_\+callback}} (\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}} usart)
+\begin{DoxyCompactList}\small\item\em Get the current received data callback for the specified USART module. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart_8h_a149cdfb762d8e1b7143825053c50a5f4}{uart\+\_\+receive}} ()
+\begin{DoxyCompactList}\small\item\em wait to receive a string \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+UART communication interface header. 
+
+\begin{DoxyAuthor}{Author}
+Laurits Ivar 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/08-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{uart_8h_a39cf6729acbf3013735f9be13213d66b}\label{uart_8h_a39cf6729acbf3013735f9be13213d66b} 
+\index{uart.h@{uart.h}!UART\_Callback\_t@{UART\_Callback\_t}}
+\index{UART\_Callback\_t@{UART\_Callback\_t}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{UART\_Callback\_t}{UART\_Callback\_t}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} UART\+\_\+\+Callback\+\_\+t) (uint8\+\_\+t)}
+
+
+
+Type definition for UART received data callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The byte of data that was received. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}\label{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da} 
+\index{uart.h@{uart.h}!USART\_t@{USART\_t}}
+\index{USART\_t@{USART\_t}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{USART\_t}{USART\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}}}
+
+
+
+Enumeration for available USART modules. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USART\_0@{USART\_0}!uart.h@{uart.h}}\index{uart.h@{uart.h}!USART\_0@{USART\_0}}}\Hypertarget{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa4ee9bfd4dd9ae53d762cc046ce72c892}\label{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa4ee9bfd4dd9ae53d762cc046ce72c892} 
+USART\+\_\+0&USART module 0 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USART\_1@{USART\_1}!uart.h@{uart.h}}\index{uart.h@{uart.h}!USART\_1@{USART\_1}}}\Hypertarget{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daad268e22914c93f6f39e46cc38ae21b2d}\label{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daad268e22914c93f6f39e46cc38ae21b2d} 
+USART\+\_\+1&USART module 1 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USART\_2@{USART\_2}!uart.h@{uart.h}}\index{uart.h@{uart.h}!USART\_2@{USART\_2}}}\Hypertarget{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa474c11c7630596744eb30ecfc8731838}\label{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa474c11c7630596744eb30ecfc8731838} 
+USART\+\_\+2&USART module 2 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{USART\_3@{USART\_3}!uart.h@{uart.h}}\index{uart.h@{uart.h}!USART\_3@{USART\_3}}}\Hypertarget{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa5642c3f3fba0c2854cd263b6d143285c}\label{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa5642c3f3fba0c2854cd263b6d143285c} 
+USART\+\_\+3&USART module 3 \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{uart_8h_a5b01abb572c8484419c74a4958e546d1}\label{uart_8h_a5b01abb572c8484419c74a4958e546d1} 
+\index{uart.h@{uart.h}!uart\_get\_rx\_callback@{uart\_get\_rx\_callback}}
+\index{uart\_get\_rx\_callback@{uart\_get\_rx\_callback}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_get\_rx\_callback()}{uart\_get\_rx\_callback()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{uart_8h_a39cf6729acbf3013735f9be13213d66b}{UART\+\_\+\+Callback\+\_\+t}} uart\+\_\+get\+\_\+rx\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}}}]{usart }\end{DoxyParamCaption})}
+
+
+
+Get the current received data callback for the specified USART module. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usart} & The USART module. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+UART\+\_\+\+Callback\+\_\+t The callback function currently in use. 
+\end{DoxyReturn}
+\Hypertarget{uart_8h_a31388240bfd12f1e0d832a03ebb83231}\label{uart_8h_a31388240bfd12f1e0d832a03ebb83231} 
+\index{uart.h@{uart.h}!uart\_init@{uart\_init}}
+\index{uart\_init@{uart\_init}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_init()}{uart\_init()}}
+{\footnotesize\ttfamily void uart\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}}}]{usart,  }\item[{uint32\+\_\+t}]{baudrate,  }\item[{\mbox{\hyperlink{uart_8h_a39cf6729acbf3013735f9be13213d66b}{UART\+\_\+\+Callback\+\_\+t}}}]{callback }\end{DoxyParamCaption})}
+
+
+
+Initialize the specified USART module. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usart} & The USART module to be initialized. \\
+\hline
+{\em baudrate} & Desired communication speed. \\
+\hline
+{\em callback} & Callback function for received data. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{uart_8h_a149cdfb762d8e1b7143825053c50a5f4}\label{uart_8h_a149cdfb762d8e1b7143825053c50a5f4} 
+\index{uart.h@{uart.h}!uart\_receive@{uart\_receive}}
+\index{uart\_receive@{uart\_receive}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_receive()}{uart\_receive()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} uart\+\_\+receive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+wait to receive a string 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{uart_8h_ae5ed200be03073f5d5f5d1f46db5ea49}\label{uart_8h_ae5ed200be03073f5d5f5d1f46db5ea49} 
+\index{uart.h@{uart.h}!uart\_send\_array\_blocking@{uart\_send\_array\_blocking}}
+\index{uart\_send\_array\_blocking@{uart\_send\_array\_blocking}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_send\_array\_blocking()}{uart\_send\_array\_blocking()}}
+{\footnotesize\ttfamily void uart\+\_\+send\+\_\+array\+\_\+blocking (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}}}]{usart,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data,  }\item[{uint16\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+
+Send an array of data over UART using blocking method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usart} & The USART module to use. \\
+\hline
+{\em data} & Pointer to the array of data to send. \\
+\hline
+{\em length} & Length of the data to send. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{uart_8h_a59e7b7bf803862ce2734be3d136ae4e2}\label{uart_8h_a59e7b7bf803862ce2734be3d136ae4e2} 
+\index{uart.h@{uart.h}!uart\_send\_array\_nonBlocking@{uart\_send\_array\_nonBlocking}}
+\index{uart\_send\_array\_nonBlocking@{uart\_send\_array\_nonBlocking}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_send\_array\_nonBlocking()}{uart\_send\_array\_nonBlocking()}}
+{\footnotesize\ttfamily void uart\+\_\+send\+\_\+array\+\_\+non\+Blocking (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}}}]{usart,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{str,  }\item[{uint16\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Send an array of data over UART without blocking. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usart} & The USART module to use. \\
+\hline
+{\em str} & Pointer to the array of data to send. \\
+\hline
+{\em len} & Length of the data to send. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{uart_8h_aa51ae8028dd09baada6dbcc1a60ffdcb}\label{uart_8h_aa51ae8028dd09baada6dbcc1a60ffdcb} 
+\index{uart.h@{uart.h}!uart\_send\_blocking@{uart\_send\_blocking}}
+\index{uart\_send\_blocking@{uart\_send\_blocking}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_send\_blocking()}{uart\_send\_blocking()}}
+{\footnotesize\ttfamily void uart\+\_\+send\+\_\+blocking (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}}}]{usart,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+
+
+Send a single byte over UART using blocking method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usart} & The USART module to use. \\
+\hline
+{\em data} & The byte of data to send. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{uart_8h_a68c744debe5f6e836ea1977d1ed07427}\label{uart_8h_a68c744debe5f6e836ea1977d1ed07427} 
+\index{uart.h@{uart.h}!uart\_send\_string\_blocking@{uart\_send\_string\_blocking}}
+\index{uart\_send\_string\_blocking@{uart\_send\_string\_blocking}!uart.h@{uart.h}}
+\doxysubsubsection{\texorpdfstring{uart\_send\_string\_blocking()}{uart\_send\_string\_blocking()}}
+{\footnotesize\ttfamily void uart\+\_\+send\+\_\+string\+\_\+blocking (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\+\_\+t}}}]{usart,  }\item[{char \texorpdfstring{$\ast$}{*}}]{data }\end{DoxyParamCaption})}
+
+
+
+Send a string over UART using blocking method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usart} & The USART module to use. \\
+\hline
+{\em data} & Null-\/terminated string to send. \\
+\hline
+\end{DoxyParams}

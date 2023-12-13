@@ -1,0 +1,34 @@
+\doxysection{uart.\+h}
+\hypertarget{uart_8h_source}{}\label{uart_8h_source}\index{lib/HAL/uart.h@{lib/HAL/uart.h}}
+\mbox{\hyperlink{uart_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa4ee9bfd4dd9ae53d762cc046ce72c892}{USART\_0}},\ \ \ \ }
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daad268e22914c93f6f39e46cc38ae21b2d}{USART\_1}},\ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa474c11c7630596744eb30ecfc8731838}{USART\_2}},\ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa5642c3f3fba0c2854cd263b6d143285c}{USART\_3}}\ \ \ \ \ }
+\DoxyCodeLine{00023\ \}\ \mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\_t}};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{uart_8h_a39cf6729acbf3013735f9be13213d66b}{UART\_Callback\_t}})(uint8\_t);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart_8h_a31388240bfd12f1e0d832a03ebb83231}{uart\_init}}(\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\_t}}\ usart,\ uint32\_t\ baudrate,\ \mbox{\hyperlink{uart_8h_a39cf6729acbf3013735f9be13213d66b}{UART\_Callback\_t}}\ callback);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart_8h_aa51ae8028dd09baada6dbcc1a60ffdcb}{uart\_send\_blocking}}(\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\_t}}\ usart,uint8\_t\ data);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart_8h_a59e7b7bf803862ce2734be3d136ae4e2}{uart\_send\_array\_nonBlocking}}(\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\_t}}\ usart,\ \ uint8\_t\ *str,\ uint16\_t\ len);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart_8h_ae5ed200be03073f5d5f5d1f46db5ea49}{uart\_send\_array\_blocking}}(\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\_t}}\ usart,\ uint8\_t\ *data,\ uint16\_t\ length);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{uart_8h_a68c744debe5f6e836ea1977d1ed07427}{uart\_send\_string\_blocking}}(\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\_t}}\ usart,\ \textcolor{keywordtype}{char}\ *data);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00081\ \mbox{\hyperlink{uart_8h_a39cf6729acbf3013735f9be13213d66b}{UART\_Callback\_t}}\ \mbox{\hyperlink{uart_8h_a5b01abb572c8484419c74a4958e546d1}{uart\_get\_rx\_callback}}(\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3da}{USART\_t}}\ usart);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{//own\ added\ functions}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00089\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{uart_8h_a149cdfb762d8e1b7143825053c50a5f4}{uart\_receive}}()\ ;}
+
+\end{DoxyCode}

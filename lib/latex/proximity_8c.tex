@@ -1,0 +1,88 @@
+\doxysection{lib/controllers/proximity.c File Reference}
+\hypertarget{proximity_8c}{}\label{proximity_8c}\index{lib/controllers/proximity.c@{lib/controllers/proximity.c}}
+
+
+Controller for the \doxylink{hc__sr04_8h_source}{hc\+\_\+sr04.\+h} header file for the driver implementation for ATmega2560.  
+
+
+{\ttfamily \#include \"{}pc\+\_\+comm.\+h\"{}}\newline
+{\ttfamily \#include \"{}hc\+\_\+sr04.\+h\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \"{}wifi.\+h\"{}}\newline
+{\ttfamily \#include \"{}proximity.\+h\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \"{}utils.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{proximity_8c_a229a40b2931844e87ce1ccea3c1cafd9}\label{proximity_8c_a229a40b2931844e87ce1ccea3c1cafd9} 
+uint16\+\_\+t {\bfseries get\+\_\+calibrated\+\_\+value} ()
+\item 
+void \mbox{\hyperlink{proximity_8c_a19cf99f646f0b5b430a7ee75489ad251}{calibrate\+Device}} ()
+\begin{DoxyCompactList}\small\item\em takes an hc\+\_\+sr04\+\_\+take\+Measurement and saves the measurement in dtb \"{}distance to bottom\"{} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{proximity_8c_a507bbcb609330129dbed6996ea77139d}{get\+Current\+Level}} ()
+\begin{DoxyCompactList}\small\item\em Get the current level in \%, relative to the calibrated value. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{proximity_8c_ae74b2da4982297aaf86eb93ded1314f0}{set\+Threshold}} (double threshold)
+\begin{DoxyCompactList}\small\item\em Set the Threshold field, NOTE\+: this is no longer needed, as of 13/12/2023 sicne the interfacing contract has been modified, and Cloud is handling the threshold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{proximity_8c_aec449f28b4745f4141db36d1e324c068}\label{proximity_8c_aec449f28b4745f4141db36d1e324c068} 
+uint16\+\_\+t {\bfseries dtb} = 0
+\item 
+\Hypertarget{proximity_8c_a83458bb1da2e14a6c17b4f31a2dff851}\label{proximity_8c_a83458bb1da2e14a6c17b4f31a2dff851} 
+double {\bfseries fillth} = 100.\+0
+\item 
+\Hypertarget{proximity_8c_a52be65c54e1ed9df842028e60ed0ed96}\label{proximity_8c_a52be65c54e1ed9df842028e60ed0ed96} 
+uint16\+\_\+t {\bfseries aht} = 0
+\item 
+\Hypertarget{proximity_8c_a87e076c9463cf223a6c973584c7ea225}\label{proximity_8c_a87e076c9463cf223a6c973584c7ea225} 
+double {\bfseries relative} = 0
+\item 
+\Hypertarget{proximity_8c_ac7098cdd315c945ca97a9fde90efbf68}\label{proximity_8c_ac7098cdd315c945ca97a9fde90efbf68} 
+double {\bfseries current\+Level} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller for the \doxylink{hc__sr04_8h_source}{hc\+\_\+sr04.\+h} header file for the driver implementation for ATmega2560. 
+
+This file provides the implementation for calibarting the ATmega2560 upon first being placed in the bin and getting the current level value 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{proximity_8c_a19cf99f646f0b5b430a7ee75489ad251}\label{proximity_8c_a19cf99f646f0b5b430a7ee75489ad251} 
+\index{proximity.c@{proximity.c}!calibrateDevice@{calibrateDevice}}
+\index{calibrateDevice@{calibrateDevice}!proximity.c@{proximity.c}}
+\doxysubsubsection{\texorpdfstring{calibrateDevice()}{calibrateDevice()}}
+{\footnotesize\ttfamily void calibrate\+Device (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+takes an hc\+\_\+sr04\+\_\+take\+Measurement and saves the measurement in dtb \"{}distance to bottom\"{} 
+
+\Hypertarget{proximity_8c_a507bbcb609330129dbed6996ea77139d}\label{proximity_8c_a507bbcb609330129dbed6996ea77139d} 
+\index{proximity.c@{proximity.c}!getCurrentLevel@{getCurrentLevel}}
+\index{getCurrentLevel@{getCurrentLevel}!proximity.c@{proximity.c}}
+\doxysubsubsection{\texorpdfstring{getCurrentLevel()}{getCurrentLevel()}}
+{\footnotesize\ttfamily void get\+Current\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the current level in \%, relative to the calibrated value. 
+
+\Hypertarget{proximity_8c_ae74b2da4982297aaf86eb93ded1314f0}\label{proximity_8c_ae74b2da4982297aaf86eb93ded1314f0} 
+\index{proximity.c@{proximity.c}!setThreshold@{setThreshold}}
+\index{setThreshold@{setThreshold}!proximity.c@{proximity.c}}
+\doxysubsubsection{\texorpdfstring{setThreshold()}{setThreshold()}}
+{\footnotesize\ttfamily void set\+Threshold (\begin{DoxyParamCaption}\item[{double}]{threshold }\end{DoxyParamCaption})}
+
+
+
+Set the Threshold field, NOTE\+: this is no longer needed, as of 13/12/2023 sicne the interfacing contract has been modified, and Cloud is handling the threshold. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em threshold} & \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,21 @@
+\doxysection{dht\+\_\+controller.\+h}
+\hypertarget{dht__controller_8h_source}{}\label{dht__controller_8h_source}\index{lib/controllers/dht\_controller.h@{lib/controllers/dht\_controller.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00004\ \{}
+\DoxyCodeLine{00005\ \ \ \ \ ERROR\_READ\_SENSOR,}
+\DoxyCodeLine{00006\ \ \ \ \ ERROR\_INVALID\_DATA,}
+\DoxyCodeLine{00007\ \ \ \ \ ERROR\_BUFFER\_OVERFLOW,}
+\DoxyCodeLine{00008\ \ \ \ \ ERROR\_INVALID\_DATA\_TYPE}
+\DoxyCodeLine{00009\ \}\ DHTErrorType;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dht__controller_8c_a3df61fc51226261022ca4230cc4fe145}{getHumidity}}(uint8\_t\ humidity\_integer,\ uint8\_t\ humidity\_decimal);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dht__controller_8c_a71810ec110a6b2a84a3eb03eae5357cd}{getTemperature}}(uint8\_t\ temperature\_integer,\ uint8\_t\ temperature\_decimal);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dht__controller_8c_ac973d7e853b8012e9cdb0177cf6e4554}{throwDHTError}}(DHTErrorType\ errorType);}
+
+\end{DoxyCode}

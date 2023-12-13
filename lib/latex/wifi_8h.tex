@@ -1,0 +1,287 @@
+\doxysection{lib/\+HAL/wifi.h File Reference}
+\hypertarget{wifi_8h}{}\label{wifi_8h}\index{lib/HAL/wifi.h@{lib/HAL/wifi.h}}
+
+
+ESP8266 Wi\+Fi module interface using UART.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \"{}uart.\+h\"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{wifi_8h_aad59760c8ea0cfe331b5240330dd0b0f}{USART\+\_\+\+WIFI}}~\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa5642c3f3fba0c2854cd263b6d143285c}{USART\+\_\+3}}
+\begin{DoxyCompactList}\small\item\em Define which USART module is used for Wi\+Fi communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{wifi_8h_a5a10faf9b8f11dba0443aca612962ca1}{WIFI\+\_\+\+TCP\+\_\+\+Callback\+\_\+t}}) ()
+\begin{DoxyCompactList}\small\item\em Type definition for Wi\+Fi TCP data received callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \{ \newline
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a364a74453ddf1c389da12410274ebf90}{WIFI\+\_\+\+OK}}
+, \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a9cce1701e9dc7b7336c87217add87631}{WIFI\+\_\+\+FAIL}}
+, \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a8d64882921bc7181ac3d1c744536b2b5}{WIFI\+\_\+\+ERROR\+\_\+\+RECEIVED\+\_\+\+ERROR}}
+, \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39aa0b5c306a5e53119121dcb2236587793}{WIFI\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+RECEIVING}}
+, \newline
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a6ffddf6d55ec16c61d74946cfca8ec59}{WIFI\+\_\+\+ERROR\+\_\+\+RECEIVING\+\_\+\+GARBAGE}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerated list of possible error messages from the Wi\+Fi module. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{wifi_8h_af67410a15ecc24ecef0e5abce0c5b30c}{wifi\+\_\+init}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the Wi\+Fi module. After it have been initialized it can take up to 4 seconds before its ready. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a005bd00ff0a7d73f6aaabe64aa7ac0a6}{wifi\+\_\+command\+\_\+\+AT}} ()
+\begin{DoxyCompactList}\small\item\em Send an AT command to the Wi\+Fi module to check if it\textquotesingle{}s responsive. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a5db5e2a9c95e7f72d0d89ec0801ace91}{wifi\+\_\+command\+\_\+join\+\_\+\+AP}} (char \texorpdfstring{$\ast$}{*}ssid, char \texorpdfstring{$\ast$}{*}password)
+\begin{DoxyCompactList}\small\item\em Command the Wi\+Fi module to join a specific Access Point (AP). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a4ff81822a28ad72d54fce88cfc66e9f6}{wifi\+\_\+command\+\_\+disable\+\_\+echo}} ()
+\begin{DoxyCompactList}\small\item\em Disable echo from the Wi\+Fi module. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a4aed042446124a2fc7912ab3dc757ae8}{wifi\+\_\+command\+\_\+set\+\_\+mode\+\_\+to\+\_\+1}} ()
+\begin{DoxyCompactList}\small\item\em Set the Wi\+Fi module to mode 1. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a552ba271227a9a07e9c2ae0c2b31f9dc}{wifi\+\_\+command\+\_\+set\+\_\+to\+\_\+single\+\_\+\+Connection}} ()
+\begin{DoxyCompactList}\small\item\em Set the Wi\+Fi module to operate in single connection mode. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a52eba99c0b57b3b291392f19eb2d6825}{wifi\+\_\+command\+\_\+create\+\_\+\+TCP\+\_\+connection}} (char \texorpdfstring{$\ast$}{*}IP, uint16\+\_\+t port, \mbox{\hyperlink{wifi_8h_a5a10faf9b8f11dba0443aca612962ca1}{WIFI\+\_\+\+TCP\+\_\+\+Callback\+\_\+t}} callback\+\_\+when\+\_\+message\+\_\+received, char \texorpdfstring{$\ast$}{*}received\+\_\+message\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Establish a TCP connection using the Wi\+Fi module. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a0e1594b540e876ad528a307597dca491}{wifi\+\_\+command\+\_\+\+TCP\+\_\+transmit}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Transmit data over an established TCP connection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a67b4baf29b95787ac461ca6e81b69cc3}{wifi\+\_\+command\+\_\+quit\+\_\+\+AP}} ()
+\begin{DoxyCompactList}\small\item\em Disconnect from the current Access Point (AP). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{wifi_8h_a249ae8b3ed12c30b04139e7a1034d954}{wifi\+\_\+command\+\_\+close\+\_\+\+TCP\+\_\+connection}} ()
+\begin{DoxyCompactList}\small\item\em Closes thhe TCP connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+ESP8266 Wi\+Fi module interface using UART. 
+
+\begin{DoxyAuthor}{Author}
+Laurits Ivar 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/08-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{wifi_8h_aad59760c8ea0cfe331b5240330dd0b0f}\label{wifi_8h_aad59760c8ea0cfe331b5240330dd0b0f} 
+\index{wifi.h@{wifi.h}!USART\_WIFI@{USART\_WIFI}}
+\index{USART\_WIFI@{USART\_WIFI}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{USART\_WIFI}{USART\_WIFI}}
+{\footnotesize\ttfamily \#define USART\+\_\+\+WIFI~\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa5642c3f3fba0c2854cd263b6d143285c}{USART\+\_\+3}}}
+
+
+
+Define which USART module is used for Wi\+Fi communication. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{wifi_8h_a5a10faf9b8f11dba0443aca612962ca1}\label{wifi_8h_a5a10faf9b8f11dba0443aca612962ca1} 
+\index{wifi.h@{wifi.h}!WIFI\_TCP\_Callback\_t@{WIFI\_TCP\_Callback\_t}}
+\index{WIFI\_TCP\_Callback\_t@{WIFI\_TCP\_Callback\_t}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{WIFI\_TCP\_Callback\_t}{WIFI\_TCP\_Callback\_t}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} WIFI\+\_\+\+TCP\+\_\+\+Callback\+\_\+t) ()}
+
+
+
+Type definition for Wi\+Fi TCP data received callback. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}\label{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39} 
+\index{wifi.h@{wifi.h}!WIFI\_ERROR\_MESSAGE\_t@{WIFI\_ERROR\_MESSAGE\_t}}
+\index{WIFI\_ERROR\_MESSAGE\_t@{WIFI\_ERROR\_MESSAGE\_t}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{WIFI\_ERROR\_MESSAGE\_t}{WIFI\_ERROR\_MESSAGE\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}}}
+
+
+
+Enumerated list of possible error messages from the Wi\+Fi module. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WIFI\_OK@{WIFI\_OK}!wifi.h@{wifi.h}}\index{wifi.h@{wifi.h}!WIFI\_OK@{WIFI\_OK}}}\Hypertarget{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a364a74453ddf1c389da12410274ebf90}\label{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a364a74453ddf1c389da12410274ebf90} 
+WIFI\+\_\+\+OK&Command successful. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WIFI\_FAIL@{WIFI\_FAIL}!wifi.h@{wifi.h}}\index{wifi.h@{wifi.h}!WIFI\_FAIL@{WIFI\_FAIL}}}\Hypertarget{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a9cce1701e9dc7b7336c87217add87631}\label{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a9cce1701e9dc7b7336c87217add87631} 
+WIFI\+\_\+\+FAIL&General failure or operation not successful. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WIFI\_ERROR\_RECEIVED\_ERROR@{WIFI\_ERROR\_RECEIVED\_ERROR}!wifi.h@{wifi.h}}\index{wifi.h@{wifi.h}!WIFI\_ERROR\_RECEIVED\_ERROR@{WIFI\_ERROR\_RECEIVED\_ERROR}}}\Hypertarget{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a8d64882921bc7181ac3d1c744536b2b5}\label{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a8d64882921bc7181ac3d1c744536b2b5} 
+WIFI\+\_\+\+ERROR\+\_\+\+RECEIVED\+\_\+\+ERROR&Received an error message from the module. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WIFI\_ERROR\_NOT\_RECEIVING@{WIFI\_ERROR\_NOT\_RECEIVING}!wifi.h@{wifi.h}}\index{wifi.h@{wifi.h}!WIFI\_ERROR\_NOT\_RECEIVING@{WIFI\_ERROR\_NOT\_RECEIVING}}}\Hypertarget{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39aa0b5c306a5e53119121dcb2236587793}\label{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39aa0b5c306a5e53119121dcb2236587793} 
+WIFI\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+RECEIVING&No data received from the module. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WIFI\_ERROR\_RECEIVING\_GARBAGE@{WIFI\_ERROR\_RECEIVING\_GARBAGE}!wifi.h@{wifi.h}}\index{wifi.h@{wifi.h}!WIFI\_ERROR\_RECEIVING\_GARBAGE@{WIFI\_ERROR\_RECEIVING\_GARBAGE}}}\Hypertarget{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a6ffddf6d55ec16c61d74946cfca8ec59}\label{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39a6ffddf6d55ec16c61d74946cfca8ec59} 
+WIFI\+\_\+\+ERROR\+\_\+\+RECEIVING\+\_\+\+GARBAGE&Received unintelligible data from the module. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{wifi_8h_a005bd00ff0a7d73f6aaabe64aa7ac0a6}\label{wifi_8h_a005bd00ff0a7d73f6aaabe64aa7ac0a6} 
+\index{wifi.h@{wifi.h}!wifi\_command\_AT@{wifi\_command\_AT}}
+\index{wifi\_command\_AT@{wifi\_command\_AT}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_AT()}{wifi\_command\_AT()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+\+AT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Send an AT command to the Wi\+Fi module to check if it\textquotesingle{}s responsive. 
+
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_a249ae8b3ed12c30b04139e7a1034d954}\label{wifi_8h_a249ae8b3ed12c30b04139e7a1034d954} 
+\index{wifi.h@{wifi.h}!wifi\_command\_close\_TCP\_connection@{wifi\_command\_close\_TCP\_connection}}
+\index{wifi\_command\_close\_TCP\_connection@{wifi\_command\_close\_TCP\_connection}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_close\_TCP\_connection()}{wifi\_command\_close\_TCP\_connection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+close\+\_\+\+TCP\+\_\+connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Closes thhe TCP connection. 
+
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_a52eba99c0b57b3b291392f19eb2d6825}\label{wifi_8h_a52eba99c0b57b3b291392f19eb2d6825} 
+\index{wifi.h@{wifi.h}!wifi\_command\_create\_TCP\_connection@{wifi\_command\_create\_TCP\_connection}}
+\index{wifi\_command\_create\_TCP\_connection@{wifi\_command\_create\_TCP\_connection}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_create\_TCP\_connection()}{wifi\_command\_create\_TCP\_connection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+create\+\_\+\+TCP\+\_\+connection (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{IP,  }\item[{uint16\+\_\+t}]{port,  }\item[{\mbox{\hyperlink{wifi_8h_a5a10faf9b8f11dba0443aca612962ca1}{WIFI\+\_\+\+TCP\+\_\+\+Callback\+\_\+t}}}]{callback\+\_\+when\+\_\+message\+\_\+received,  }\item[{char \texorpdfstring{$\ast$}{*}}]{received\+\_\+message\+\_\+buffer }\end{DoxyParamCaption})}
+
+
+
+Establish a TCP connection using the Wi\+Fi module. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em IP} & IP address to connect to. \\
+\hline
+{\em port} & Port number to use for the connection. \\
+\hline
+{\em callback\+\_\+when\+\_\+message\+\_\+received} & Callback executed when a message is received. \\
+\hline
+{\em received\+\_\+message\+\_\+buffer} & Buffer to hold the received message. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_a4ff81822a28ad72d54fce88cfc66e9f6}\label{wifi_8h_a4ff81822a28ad72d54fce88cfc66e9f6} 
+\index{wifi.h@{wifi.h}!wifi\_command\_disable\_echo@{wifi\_command\_disable\_echo}}
+\index{wifi\_command\_disable\_echo@{wifi\_command\_disable\_echo}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_disable\_echo()}{wifi\_command\_disable\_echo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+disable\+\_\+echo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Disable echo from the Wi\+Fi module. 
+
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_a5db5e2a9c95e7f72d0d89ec0801ace91}\label{wifi_8h_a5db5e2a9c95e7f72d0d89ec0801ace91} 
+\index{wifi.h@{wifi.h}!wifi\_command\_join\_AP@{wifi\_command\_join\_AP}}
+\index{wifi\_command\_join\_AP@{wifi\_command\_join\_AP}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_join\_AP()}{wifi\_command\_join\_AP()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+join\+\_\+\+AP (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{ssid,  }\item[{char \texorpdfstring{$\ast$}{*}}]{password }\end{DoxyParamCaption})}
+
+
+
+Command the Wi\+Fi module to join a specific Access Point (AP). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ssid} & Network SSID to join. \\
+\hline
+{\em password} & Password for the SSID. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_a67b4baf29b95787ac461ca6e81b69cc3}\label{wifi_8h_a67b4baf29b95787ac461ca6e81b69cc3} 
+\index{wifi.h@{wifi.h}!wifi\_command\_quit\_AP@{wifi\_command\_quit\_AP}}
+\index{wifi\_command\_quit\_AP@{wifi\_command\_quit\_AP}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_quit\_AP()}{wifi\_command\_quit\_AP()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+quit\+\_\+\+AP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Disconnect from the current Access Point (AP). 
+
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_a4aed042446124a2fc7912ab3dc757ae8}\label{wifi_8h_a4aed042446124a2fc7912ab3dc757ae8} 
+\index{wifi.h@{wifi.h}!wifi\_command\_set\_mode\_to\_1@{wifi\_command\_set\_mode\_to\_1}}
+\index{wifi\_command\_set\_mode\_to\_1@{wifi\_command\_set\_mode\_to\_1}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_set\_mode\_to\_1()}{wifi\_command\_set\_mode\_to\_1()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+set\+\_\+mode\+\_\+to\+\_\+1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the Wi\+Fi module to mode 1. 
+
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_a552ba271227a9a07e9c2ae0c2b31f9dc}\label{wifi_8h_a552ba271227a9a07e9c2ae0c2b31f9dc} 
+\index{wifi.h@{wifi.h}!wifi\_command\_set\_to\_single\_Connection@{wifi\_command\_set\_to\_single\_Connection}}
+\index{wifi\_command\_set\_to\_single\_Connection@{wifi\_command\_set\_to\_single\_Connection}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_set\_to\_single\_Connection()}{wifi\_command\_set\_to\_single\_Connection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+set\+\_\+to\+\_\+single\+\_\+\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Set the Wi\+Fi module to operate in single connection mode. 
+
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_a0e1594b540e876ad528a307597dca491}\label{wifi_8h_a0e1594b540e876ad528a307597dca491} 
+\index{wifi.h@{wifi.h}!wifi\_command\_TCP\_transmit@{wifi\_command\_TCP\_transmit}}
+\index{wifi\_command\_TCP\_transmit@{wifi\_command\_TCP\_transmit}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_command\_TCP\_transmit()}{wifi\_command\_TCP\_transmit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{wifi_8h_a7f9b0dd302fe88f3bb18b01864498e39}{WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} wifi\+\_\+command\+\_\+\+TCP\+\_\+transmit (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data,  }\item[{uint16\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+
+Transmit data over an established TCP connection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to the data to transmit. \\
+\hline
+{\em length} & Length of the data to transmit. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+WIFI\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Error message based on the response from the module. 
+\end{DoxyReturn}
+\Hypertarget{wifi_8h_af67410a15ecc24ecef0e5abce0c5b30c}\label{wifi_8h_af67410a15ecc24ecef0e5abce0c5b30c} 
+\index{wifi.h@{wifi.h}!wifi\_init@{wifi\_init}}
+\index{wifi\_init@{wifi\_init}!wifi.h@{wifi.h}}
+\doxysubsubsection{\texorpdfstring{wifi\_init()}{wifi\_init()}}
+{\footnotesize\ttfamily void wifi\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the Wi\+Fi module. After it have been initialized it can take up to 4 seconds before its ready. 
+

@@ -1,0 +1,97 @@
+\doxysection{lib/\+HAL/dht11.h File Reference}
+\hypertarget{dht11_8h}{}\label{dht11_8h}\index{lib/HAL/dht11.h@{lib/HAL/dht11.h}}
+
+
+DHT11 Sensor Driver Header File.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cd}{DHT11\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \{ \mbox{\hyperlink{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cdaf0e012970699136c0464dd75f16f0dfc}{DHT11\+\_\+\+OK}}
+, \mbox{\hyperlink{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cda3ec8f2b7a22304fc64e5a98dbf8013e3}{DHT11\+\_\+\+FAIL}}
+ \}
+\begin{DoxyCompactList}\small\item\em DHT11 Error messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cd}{DHT11\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} \mbox{\hyperlink{dht11_8h_a9de10e0aa573fa3aa740527853581229}{dht11\+\_\+get}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}humidity\+\_\+integer, uint8\+\_\+t \texorpdfstring{$\ast$}{*}humidity\+\_\+decimal, uint8\+\_\+t \texorpdfstring{$\ast$}{*}temperature\+\_\+integer, uint8\+\_\+t \texorpdfstring{$\ast$}{*}temperature\+\_\+decimal)
+\begin{DoxyCompactList}\small\item\em Fetches humidity and temperature readings from the DHT11 sensor. \end{DoxyCompactList}\item 
+\Hypertarget{dht11_8h_ab1104699ebbf2764bae21e916a89e8db}\label{dht11_8h_ab1104699ebbf2764bae21e916a89e8db} 
+void {\bfseries dht11\+\_\+init} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+DHT11 Sensor Driver Header File. 
+
+This header file provides the interface for interfacing with a DHT11 humidity and temperature sensor. 
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cd}\label{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cd} 
+\index{dht11.h@{dht11.h}!DHT11\_ERROR\_MESSAGE\_t@{DHT11\_ERROR\_MESSAGE\_t}}
+\index{DHT11\_ERROR\_MESSAGE\_t@{DHT11\_ERROR\_MESSAGE\_t}!dht11.h@{dht11.h}}
+\doxysubsubsection{\texorpdfstring{DHT11\_ERROR\_MESSAGE\_t}{DHT11\_ERROR\_MESSAGE\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cd}{DHT11\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}}}
+
+
+
+DHT11 Error messages. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DHT11\_OK@{DHT11\_OK}!dht11.h@{dht11.h}}\index{dht11.h@{dht11.h}!DHT11\_OK@{DHT11\_OK}}}\Hypertarget{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cdaf0e012970699136c0464dd75f16f0dfc}\label{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cdaf0e012970699136c0464dd75f16f0dfc} 
+DHT11\+\_\+\+OK&Command successful. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DHT11\_FAIL@{DHT11\_FAIL}!dht11.h@{dht11.h}}\index{dht11.h@{dht11.h}!DHT11\_FAIL@{DHT11\_FAIL}}}\Hypertarget{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cda3ec8f2b7a22304fc64e5a98dbf8013e3}\label{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cda3ec8f2b7a22304fc64e5a98dbf8013e3} 
+DHT11\+\_\+\+FAIL&General failure or operation not successful. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{dht11_8h_a9de10e0aa573fa3aa740527853581229}\label{dht11_8h_a9de10e0aa573fa3aa740527853581229} 
+\index{dht11.h@{dht11.h}!dht11\_get@{dht11\_get}}
+\index{dht11\_get@{dht11\_get}!dht11.h@{dht11.h}}
+\doxysubsubsection{\texorpdfstring{dht11\_get()}{dht11\_get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cd}{DHT11\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t}} dht11\+\_\+get (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{humidity\+\_\+integer,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{humidity\+\_\+decimal,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{temperature\+\_\+integer,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{temperature\+\_\+decimal }\end{DoxyParamCaption})}
+
+
+
+Fetches humidity and temperature readings from the DHT11 sensor. 
+
+This function fetches the humidity and temperature readings from the DHT11 sensor. The function can only be called once every 2 seconds to avoid sensor lock-\/up.
+
+To only get specific data, pass NULL for the arguments that are not needed. For example, to only get the humidity integer part, pass NULL for all other arguments.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em humidity\+\_\+integer} & Pointer where the integer part of the humidity will be stored. Pass NULL if not needed. \\
+\hline
+\mbox{\texttt{ out}}  & {\em humidity\+\_\+decimal} & Pointer where the decimal part of the humidity will be stored. Pass NULL if not needed. \\
+\hline
+\mbox{\texttt{ out}}  & {\em temperature\+\_\+integer} & Pointer where the integer part of the temperature will be stored. Pass NULL if not needed. \\
+\hline
+\mbox{\texttt{ out}}  & {\em temperature\+\_\+decimal} & Pointer where the decimal part of the temperature will be stored. Pass NULL if not needed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+DHT11\+\_\+\+ERROR\+\_\+\+MESSAGE\+\_\+t Status of the read operation (DHT11\+\_\+\+OK if successful, DHT11\+\_\+\+FAIL otherwise).
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function should be called once every 2 seconds at most.
+\end{DoxyNote}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Example\ usage:}
+\DoxyCodeLine{\ \ \ \ uint8\_t\ humidity\_integer,\ humidity\_decimal,\ temperature\_integer,\ temperature\_decimal;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{char}\ str[64];}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (dht11\_get(\&humidity\_integer,\ \&humidity\_decimal,\ \&temperature\_integer,\ \&temperature\_decimal)\ ==\ \mbox{\hyperlink{dht11_8h_ad1612f9573e0fc42a15dab0d741fc8cdaf0e012970699136c0464dd75f16f0dfc}{DHT11\_OK}})\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ sprintf(str,\ \textcolor{stringliteral}{"{}Humidity\ =\ \%d.\%d\%\%\ and\ the\ temperature\ =\ \%d.\%d\ C\(\backslash\)n\(\backslash\)n"{}},\ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ humidity\_integer,\ humidity\_decimal,\ temperature\_integer,\ temperature\_decimal);}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+ 

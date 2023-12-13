@@ -1,0 +1,49 @@
+\doxysection{lib/controllers/status.c File Reference}
+\hypertarget{status_8c}{}\label{status_8c}\index{lib/controllers/status.c@{lib/controllers/status.c}}
+
+
+Controller for getting the status of the ATmega2560.  
+
+
+{\ttfamily \#include \"{}status.\+h\"{}}\newline
+{\ttfamily \#include \"{}dht11.\+h\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \"{}hc\+\_\+sr04.\+h\"{}}\newline
+{\ttfamily \#include \"{}wifi.\+h\"{}}\newline
+{\ttfamily \#include \"{}pc\+\_\+comm.\+h\"{}}\newline
+{\ttfamily \#include \"{}utils.\+h\"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{status_8c_ae9491f00f58ccb442488be2e40fd0302}{send\+Ok}} ()
+\begin{DoxyCompactList}\small\item\em Sends an OK Message to the Cloud via TCP connection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{status_8c_aedafa1ae65b2c3b7fe0c606e8b4eec83}{send\+Not\+Ok}} ()
+\begin{DoxyCompactList}\small\item\em Send an NOT OK Message to the Cloud via TCP connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Controller for getting the status of the ATmega2560. 
+
+This file provides the implementation of sending the status of the Arduino 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{status_8c_aedafa1ae65b2c3b7fe0c606e8b4eec83}\label{status_8c_aedafa1ae65b2c3b7fe0c606e8b4eec83} 
+\index{status.c@{status.c}!sendNotOk@{sendNotOk}}
+\index{sendNotOk@{sendNotOk}!status.c@{status.c}}
+\doxysubsubsection{\texorpdfstring{sendNotOk()}{sendNotOk()}}
+{\footnotesize\ttfamily void send\+Not\+Ok (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Send an NOT OK Message to the Cloud via TCP connection. 
+
+\Hypertarget{status_8c_ae9491f00f58ccb442488be2e40fd0302}\label{status_8c_ae9491f00f58ccb442488be2e40fd0302} 
+\index{status.c@{status.c}!sendOk@{sendOk}}
+\index{sendOk@{sendOk}!status.c@{status.c}}
+\doxysubsubsection{\texorpdfstring{sendOk()}{sendOk()}}
+{\footnotesize\ttfamily void send\+Ok (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Sends an OK Message to the Cloud via TCP connection. 
+

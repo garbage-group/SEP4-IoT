@@ -1,0 +1,69 @@
+\doxysection{lib/\+HAL/periodic\+\_\+task.h File Reference}
+\hypertarget{periodic__task_8h}{}\label{periodic__task_8h}\index{lib/HAL/periodic\_task.h@{lib/HAL/periodic\_task.h}}
+
+
+Periodic Task Driver for ATmega2560.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{periodic__task_8h_aa223f9ecd3351b1d09ef84b7f0132c9d}{timer\+\_\+init\+\_\+a}} (void(\texorpdfstring{$\ast$}{*}user\+\_\+function\+\_\+a)(void), uint32\+\_\+t interval\+\_\+ms\+\_\+a)
+\begin{DoxyCompactList}\small\item\em Initialize Timer0 and attach the first user function. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{periodic__task_8h_af2de5ffdd5f0a83b2202f3572080b06d}{timer\+\_\+init\+\_\+b}} (void(\texorpdfstring{$\ast$}{*}user\+\_\+function\+\_\+b)(void), uint32\+\_\+t interval\+\_\+ms\+\_\+b)
+\begin{DoxyCompactList}\small\item\em Attach the second user function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Periodic Task Driver for ATmega2560. 
+
+This file provides the API for initializing Timer0 and attaching user functions that will be called at different frequencies.
+
+\begin{DoxyAuthor}{Author}
+Laurits Anesen 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+September 2023 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{periodic__task_8h_aa223f9ecd3351b1d09ef84b7f0132c9d}\label{periodic__task_8h_aa223f9ecd3351b1d09ef84b7f0132c9d} 
+\index{periodic\_task.h@{periodic\_task.h}!timer\_init\_a@{timer\_init\_a}}
+\index{timer\_init\_a@{timer\_init\_a}!periodic\_task.h@{periodic\_task.h}}
+\doxysubsubsection{\texorpdfstring{timer\_init\_a()}{timer\_init\_a()}}
+{\footnotesize\ttfamily void timer\+\_\+init\+\_\+a (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(void)}]{user\+\_\+function\+\_\+a,  }\item[{uint32\+\_\+t}]{interval\+\_\+ms\+\_\+a }\end{DoxyParamCaption})}
+
+
+
+Initialize Timer0 and attach the first user function. 
+
+This function initializes Timer0 to call the provided function every XX milliseconds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+\_\+function\+\_\+a} & Pointer to the first function to be executed \\
+\hline
+{\em interval\+\_\+ms\+\_\+a} & Time interval in milliseconds for the first function \\
+\hline
+\end{DoxyParams}
+\Hypertarget{periodic__task_8h_af2de5ffdd5f0a83b2202f3572080b06d}\label{periodic__task_8h_af2de5ffdd5f0a83b2202f3572080b06d} 
+\index{periodic\_task.h@{periodic\_task.h}!timer\_init\_b@{timer\_init\_b}}
+\index{timer\_init\_b@{timer\_init\_b}!periodic\_task.h@{periodic\_task.h}}
+\doxysubsubsection{\texorpdfstring{timer\_init\_b()}{timer\_init\_b()}}
+{\footnotesize\ttfamily void timer\+\_\+init\+\_\+b (\begin{DoxyParamCaption}\item[{void(\texorpdfstring{$\ast$}{*})(void)}]{user\+\_\+function\+\_\+b,  }\item[{uint32\+\_\+t}]{interval\+\_\+ms\+\_\+b }\end{DoxyParamCaption})}
+
+
+
+Attach the second user function. 
+
+This function sets Timer0 to call the provided function every XX milliseconds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em user\+\_\+function\+\_\+b} & Pointer to the second function to be executed \\
+\hline
+{\em interval\+\_\+ms\+\_\+b} & Time interval in milliseconds for the second function \\
+\hline
+\end{DoxyParams}

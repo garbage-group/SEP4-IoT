@@ -1,0 +1,21 @@
+\doxysection{pc\+\_\+comm.\+h}
+\hypertarget{pc__comm_8h_source}{}\label{pc__comm_8h_source}\index{lib/HAL/pc\_comm.h@{lib/HAL/pc\_comm.h}}
+\mbox{\hyperlink{pc__comm_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{uart_8h}{uart.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}stddef.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ USART\_PC\_COMM\ USART\_0}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{typedef}\ void\ (*\mbox{\hyperlink{pc__comm_8h_ad7137130ae00d7cd5067fea0289f369a}{pc\_comm\_callback\_t}})(char);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pc__comm_8h_ab84a698b2233717126eddd52ec72d136}{pc\_comm\_init}}(uint32\_t\ baudrate,\ \mbox{\hyperlink{pc__comm_8h_ad7137130ae00d7cd5067fea0289f369a}{pc\_comm\_callback\_t}}\ char\_received\_callback);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00041\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pc__comm_8h_a3cca5bcbe84ce1d7d9c42e7f6886601d}{pc\_comm\_send\_array\_blocking}}(uint8\_t\ *data,\ uint16\_t\ length);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pc__comm_8h_afd1894c0276b423e9ce0048c24e47b54}{pc\_comm\_send\_string\_blocking}}(\textcolor{keywordtype}{char}\ *\textcolor{keywordtype}{string});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{pc__comm_8h_a1dd142fdb90f53858f2b9b0ff5629049}{pc\_comm\_send\_array\_nonBlocking}}(uint8\_t\ *str,\ uint16\_t\ len);}
+
+\end{DoxyCode}

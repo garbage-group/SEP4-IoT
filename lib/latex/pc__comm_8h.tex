@@ -1,0 +1,147 @@
+\doxysection{lib/\+HAL/pc\+\_\+comm.h File Reference}
+\hypertarget{pc__comm_8h}{}\label{pc__comm_8h}\index{lib/HAL/pc\_comm.h@{lib/HAL/pc\_comm.h}}
+
+
+PC Communication interface header using UART.  
+
+
+{\ttfamily \#include \"{}uart.\+h\"{}}\newline
+{\ttfamily \#include \"{}stddef.\+h\"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pc__comm_8h_a9d534be6c541aaf0548719ef726c7370}{USART\+\_\+\+PC\+\_\+\+COMM}}~\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa4ee9bfd4dd9ae53d762cc046ce72c892}{USART\+\_\+0}}
+\begin{DoxyCompactList}\small\item\em Define which USART module is used for PC communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pc__comm_8h_ad7137130ae00d7cd5067fea0289f369a}{pc\+\_\+comm\+\_\+callback\+\_\+t}}) (char)
+\begin{DoxyCompactList}\small\item\em Type definition for PC communication data received callback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pc__comm_8h_ab84a698b2233717126eddd52ec72d136}{pc\+\_\+comm\+\_\+init}} (uint32\+\_\+t baudrate, \mbox{\hyperlink{pc__comm_8h_ad7137130ae00d7cd5067fea0289f369a}{pc\+\_\+comm\+\_\+callback\+\_\+t}} char\+\_\+received\+\_\+callback)
+\begin{DoxyCompactList}\small\item\em Initialize the PC communication module. If you dont want to receive data from the PC, just set the callbak to NULL. Example\+: pc\+\_\+comm\+\_\+init(115200, NULL);. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pc__comm_8h_a3cca5bcbe84ce1d7d9c42e7f6886601d}{pc\+\_\+comm\+\_\+send\+\_\+array\+\_\+blocking}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\begin{DoxyCompactList}\small\item\em Send an array of data to the PC using a blocking method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pc__comm_8h_afd1894c0276b423e9ce0048c24e47b54}{pc\+\_\+comm\+\_\+send\+\_\+string\+\_\+blocking}} (char \texorpdfstring{$\ast$}{*}string)
+\begin{DoxyCompactList}\small\item\em Send a null-\/terminated string to the PC using a blocking method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{pc__comm_8h_a1dd142fdb90f53858f2b9b0ff5629049}{pc\+\_\+comm\+\_\+send\+\_\+array\+\_\+non\+Blocking}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}str, uint16\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em Send an array of data to the PC without blocking the execution. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+PC Communication interface header using UART. 
+
+\begin{DoxyAuthor}{Author}
+Laurits Ivar 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+2 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/08-\/23
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pc__comm_8h_a9d534be6c541aaf0548719ef726c7370}\label{pc__comm_8h_a9d534be6c541aaf0548719ef726c7370} 
+\index{pc\_comm.h@{pc\_comm.h}!USART\_PC\_COMM@{USART\_PC\_COMM}}
+\index{USART\_PC\_COMM@{USART\_PC\_COMM}!pc\_comm.h@{pc\_comm.h}}
+\doxysubsubsection{\texorpdfstring{USART\_PC\_COMM}{USART\_PC\_COMM}}
+{\footnotesize\ttfamily \#define USART\+\_\+\+PC\+\_\+\+COMM~\mbox{\hyperlink{uart_8h_a3dbe3677f73e5eefad13d3c8858ce3daa4ee9bfd4dd9ae53d762cc046ce72c892}{USART\+\_\+0}}}
+
+
+
+Define which USART module is used for PC communication. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{pc__comm_8h_ad7137130ae00d7cd5067fea0289f369a}\label{pc__comm_8h_ad7137130ae00d7cd5067fea0289f369a} 
+\index{pc\_comm.h@{pc\_comm.h}!pc\_comm\_callback\_t@{pc\_comm\_callback\_t}}
+\index{pc\_comm\_callback\_t@{pc\_comm\_callback\_t}!pc\_comm.h@{pc\_comm.h}}
+\doxysubsubsection{\texorpdfstring{pc\_comm\_callback\_t}{pc\_comm\_callback\_t}}
+{\footnotesize\ttfamily typedef void(\texorpdfstring{$\ast$}{*} pc\+\_\+comm\+\_\+callback\+\_\+t) (char)}
+
+
+
+Type definition for PC communication data received callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em char} & The character that was received from the PC. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pc__comm_8h_ab84a698b2233717126eddd52ec72d136}\label{pc__comm_8h_ab84a698b2233717126eddd52ec72d136} 
+\index{pc\_comm.h@{pc\_comm.h}!pc\_comm\_init@{pc\_comm\_init}}
+\index{pc\_comm\_init@{pc\_comm\_init}!pc\_comm.h@{pc\_comm.h}}
+\doxysubsubsection{\texorpdfstring{pc\_comm\_init()}{pc\_comm\_init()}}
+{\footnotesize\ttfamily void pc\+\_\+comm\+\_\+init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{baudrate,  }\item[{\mbox{\hyperlink{pc__comm_8h_ad7137130ae00d7cd5067fea0289f369a}{pc\+\_\+comm\+\_\+callback\+\_\+t}}}]{char\+\_\+received\+\_\+callback }\end{DoxyParamCaption})}
+
+
+
+Initialize the PC communication module. If you dont want to receive data from the PC, just set the callbak to NULL. Example\+: pc\+\_\+comm\+\_\+init(115200, NULL);. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em baudrate} & Desired communication speed with the PC. \\
+\hline
+{\em char\+\_\+received\+\_\+callback} & Callback function executed when a character is received from the PC. This can be NULL \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pc__comm_8h_a3cca5bcbe84ce1d7d9c42e7f6886601d}\label{pc__comm_8h_a3cca5bcbe84ce1d7d9c42e7f6886601d} 
+\index{pc\_comm.h@{pc\_comm.h}!pc\_comm\_send\_array\_blocking@{pc\_comm\_send\_array\_blocking}}
+\index{pc\_comm\_send\_array\_blocking@{pc\_comm\_send\_array\_blocking}!pc\_comm.h@{pc\_comm.h}}
+\doxysubsubsection{\texorpdfstring{pc\_comm\_send\_array\_blocking()}{pc\_comm\_send\_array\_blocking()}}
+{\footnotesize\ttfamily void pc\+\_\+comm\+\_\+send\+\_\+array\+\_\+blocking (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data,  }\item[{uint16\+\_\+t}]{length }\end{DoxyParamCaption})}
+
+
+
+Send an array of data to the PC using a blocking method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to the array of data to send. \\
+\hline
+{\em length} & Length of the data to send. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pc__comm_8h_a1dd142fdb90f53858f2b9b0ff5629049}\label{pc__comm_8h_a1dd142fdb90f53858f2b9b0ff5629049} 
+\index{pc\_comm.h@{pc\_comm.h}!pc\_comm\_send\_array\_nonBlocking@{pc\_comm\_send\_array\_nonBlocking}}
+\index{pc\_comm\_send\_array\_nonBlocking@{pc\_comm\_send\_array\_nonBlocking}!pc\_comm.h@{pc\_comm.h}}
+\doxysubsubsection{\texorpdfstring{pc\_comm\_send\_array\_nonBlocking()}{pc\_comm\_send\_array\_nonBlocking()}}
+{\footnotesize\ttfamily void pc\+\_\+comm\+\_\+send\+\_\+array\+\_\+non\+Blocking (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{str,  }\item[{uint16\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+
+
+Send an array of data to the PC without blocking the execution. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & Pointer to the array of data to send. \\
+\hline
+{\em len} & Length of the data to send. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{pc__comm_8h_afd1894c0276b423e9ce0048c24e47b54}\label{pc__comm_8h_afd1894c0276b423e9ce0048c24e47b54} 
+\index{pc\_comm.h@{pc\_comm.h}!pc\_comm\_send\_string\_blocking@{pc\_comm\_send\_string\_blocking}}
+\index{pc\_comm\_send\_string\_blocking@{pc\_comm\_send\_string\_blocking}!pc\_comm.h@{pc\_comm.h}}
+\doxysubsubsection{\texorpdfstring{pc\_comm\_send\_string\_blocking()}{pc\_comm\_send\_string\_blocking()}}
+{\footnotesize\ttfamily void pc\+\_\+comm\+\_\+send\+\_\+string\+\_\+blocking (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{string }\end{DoxyParamCaption})}
+
+
+
+Send a null-\/terminated string to the PC using a blocking method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & The null-\/terminated string to send. \\
+\hline
+\end{DoxyParams}
