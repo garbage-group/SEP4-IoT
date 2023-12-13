@@ -16,6 +16,12 @@
 char rarray[128];
 uint8_t humidity_integer, humidity_decimal, temperature_integer, temperature_decimal, level_integer;
 
+/**
+ * @brief This function takes a char *string as it's only parameter and returns the double value stored inside as type "double"
+ *
+ * @param string
+ * @return double
+ */
 double parse_double(const char *string)
 {
     char carray[128];
@@ -43,6 +49,11 @@ double parse_double(const char *string)
     pc_comm_send_string_blocking(carray);
     return (double)decimal + ((double)precision / dividor);
 };
+
+/**
+ * @brief this is the call back method for the TCP connection, that handles the requests and calls the appropriate functions.
+ *
+ */
 
 void receiveMessage()
 {
@@ -123,7 +134,11 @@ void receiveMessage()
         }
     }
 }
-
+/**
+ * @brief Creates a TCP conneciton and provides the "recieveMessage" function as a callback, as well as a buffer to recieve requests
+ *
+ * @return int
+ */
 int create_TCP_connection()
 {
     WIFI_ERROR_MESSAGE_t tcpResult = wifi_command_create_TCP_connection("192.168.1.125", 5663, receiveMessage, rarray);
@@ -137,6 +152,12 @@ int create_TCP_connection()
     }
     return tcpResult;
 }
+
+/**
+ * @brief Connects to the Wifi, with the credentials and returns the WIFI_ERROR_MESSAGE, also it sends "debug message" to the PC
+ *
+ * @return int
+ */
 int connect_to_wifi()
 {
     WIFI_ERROR_MESSAGE_t wifiresult = wifi_command_join_AP("asus_papp", "macika74");
@@ -150,6 +171,13 @@ int connect_to_wifi()
     }
     return wifiresult;
 }
+
+/**
+ * @brief The function makes wifi_command_TCP_transmit easily accessible, with the redundant code seperated.
+ *
+ * @param buffer
+ * @return int
+ */
 
 int sendViaTCP(char *buffer)
 {
