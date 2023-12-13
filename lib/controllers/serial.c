@@ -4,6 +4,10 @@
 #include "utils.h"
 #define SERIAL_NUMBER 1234
 
+/**
+ * @brief Method which sends over the serial number of the Arduino
+ *
+ */
 void send_serial_TCP()
 {
     char buffer[128];
