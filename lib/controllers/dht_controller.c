@@ -6,6 +6,12 @@
 #include "dht_controller.h"
 #include "utils.h"
 
+/**
+ * @brief Get the Humidity from the objects, format the string, and send to the Cloud via TCP connection
+ * 
+ * @param humidity_integer is the integer value of the humidity
+ * @param humidity_decimal is the decimal value of the humidity
+ */
 void getHumidity(uint8_t humidity_integer, uint8_t humidity_decimal)
 {
         char carray[128];
@@ -14,6 +20,12 @@ void getHumidity(uint8_t humidity_integer, uint8_t humidity_decimal)
         pc_comm_send_string_blocking(carray);
 }
 
+/**
+ * @brief Get the Temperature object, format the string, and send to the Cloud via TCP connection
+ * 
+ * @param temperature_integer is the integer value of the temperature
+ * @param temperature_decimal is the decimal value of the temperature
+ */
 void getTemperature(uint8_t temperature_integer, uint8_t temperature_decimal)
 {
         char carray[128];
@@ -22,6 +34,11 @@ void getTemperature(uint8_t temperature_integer, uint8_t temperature_decimal)
         pc_comm_send_string_blocking(carray);
 }
 
+/**
+ * @brief Return an error message based on the type of error recieved.
+ * 
+ * @param errorType is an error that is used to determine the message to send to the terminal.
+ */
 void throwDHTError(DHTErrorType errorType)
 {
         char carray[128];
