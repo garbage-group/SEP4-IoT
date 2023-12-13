@@ -1,3 +1,10 @@
+/**
+ * @file  proximity.c
+ * @brief Controller for the hc_sr04.h header file for the driver implementation for ATmega2560
+ *
+ * This file provides the implementation for calibarting the ATmega2560 upon first being placed
+ * in the bin and getting the current level value
+ */
 #include "pc_comm.h"
 #include "hc_sr04.h"
 #include <stdio.h>

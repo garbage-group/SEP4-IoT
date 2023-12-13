@@ -1,3 +1,11 @@
+/**
+ * @file  dht_controller.c
+ * @brief Controller for the dht11.h header file for the driver implementation for ATmega2560
+ *
+ * This file provides the implementation for getting the humidity and temperature data from dht11 sensor
+ *
+ *
+ */
 #include "pc_comm.h"
 #include "dht11.h"
 #include <stdio.h>
